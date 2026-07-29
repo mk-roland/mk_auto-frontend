@@ -2,7 +2,6 @@
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xbdnkajp";
 const WHATSAPP_NUMBER = "2250101030363";
-const TELEGRAM_USERNAME = "ChezChristyOfficiel";
 
 /**
  * Envoie le formulaire via Formspree (API)
@@ -33,14 +32,7 @@ export const sendViaWhatsApp = (formData) => {
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`, "_blank");
 };
 
-/**
- * Envoie le message via mon Telegram
- */
-export const sendViaTelegram = (formData) => {
-  const message = `Bonjour Chez Christy !\n\nNom: ${formData.nom}\nEmail: ${formData.email}\nObjet: ${formData.objet}\nMessage: ${formData.message}`;
-  const encodedText = encodeURIComponent(message);
-  window.open(`https://t.me/${TELEGRAM_USERNAME}?text=${encodedText}`, "_blank");
-};
+
 
 /**
  * Sauvegarde le message dans le LocalStorage
