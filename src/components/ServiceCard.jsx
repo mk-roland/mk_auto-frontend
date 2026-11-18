@@ -1,4 +1,3 @@
-import React from 'react';
 
 function ServiceCard({ service, index = 0 }) {
   return (
@@ -12,7 +11,7 @@ function ServiceCard({ service, index = 0 }) {
           <div className="p-3 bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
             {service.icon}
           </div>
-          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 uppercase tracking-wider">
+          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 uppercase tracking-wider">
             {service.badge}
           </span>
         </div>

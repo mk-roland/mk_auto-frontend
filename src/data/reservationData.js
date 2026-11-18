@@ -1,3 +1,5 @@
+import { Phone, MessageCircle, Mail } from 'lucide-react';
+
 // Structure dynamique des champs textuels du formulaire
 export const FORM_FIELDS = [
   {
@@ -54,15 +56,15 @@ export const VEHICULES_OPTIONS = [
 export const CONTACT_INFOS = [
   {
     id: "phone",
-    icon: "📞",
+    icon: Phone,
     prefix: "Téléphone :",
     label: "+225 01 01 03 03 63",
     href: "tel:+2250101030363",
-    hoverClass: "hover:text-blue-500"
+    hoverClass: "hover:text-blue-600"
   },
   {
     id: "whatsapp",
-    icon: "💬",
+    icon: MessageCircle,
     prefix: "WhatsApp :",
     label: "+225 01 01 03 03 63",
     href: "https://wa.me/2250101030363",
@@ -71,7 +73,7 @@ export const CONTACT_INFOS = [
   },
   {
     id: "email",
-    icon: "✉️",
+    icon: Mail,
     prefix: "Email :",
     label: "contact@mkauto.ci",
     href: "mailto:contact@mkauto.ci",

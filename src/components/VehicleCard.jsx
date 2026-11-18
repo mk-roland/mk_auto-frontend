@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import { Users, Cog, Fuel, ArrowRight } from 'lucide-react';
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80";
 
 export default function VehicleCard({
   id,
@@ -12,79 +15,75 @@ export default function VehicleCard({
   places,
   index = 0
 }) {
-  // Calcul du délai dynamique pour l'animation en cascade
+  // Délai pour l'animation en cascade
   const delay = (index % 3) * 120;
 
+  const specs = [
+    { icon: Users, label: `${places} places` },
+    { icon: Cog, label: boite },
+    { icon: Fuel, label: energie },
+  ];
+
   return (
-    <div
-      className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 
-      shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 
-      flex flex-col justify-between h-full group"
+    <Link
+      to={`/vehicle/detail/${id}`}
+      className="group h-full flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800
+      shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
       style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Conteneur de l'image */}
-      <div className="relative h-52 w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+      {/* Image */}
+      <div className="relative aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
         <img
           src={image}
-          alt={nom}
+          alt={`${marque} ${nom}`}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
-            // Image de fallback si le fichier n'est pas trouvé
-            e.target.src = "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80";
+            e.currentTarget.src = FALLBACK_IMAGE;
           }}
         />
-        {/* Badge de catégorie */}
-        <span className="absolute top-3 left-3 bg-blue-600/90 text-white text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-md shadow-sm">
+        <span className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/80 text-slate-800 dark:text-slate-100 text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-md">
           {categorie}
         </span>
       </div>
 
-      {/* Contenu et Détails */}
-      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+      {/* Contenu */}
+      <div className="p-6 flex-1 flex flex-col gap-6">
         <div>
-          {/* Marque et Nom */}
-          <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
             {marque}
-          </span>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-white mt-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          </p>
+          <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {nom}
           </h3>
 
-          {/* Caractéristiques principales */}
-          <div className="grid grid-cols-3 gap-2 mt-4 text-xs font-medium text-slate-600 dark:text-slate-300">
-            <div className="bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl text-center border border-slate-100 dark:border-slate-800">
-              <span className="block text-base mb-0.5">👥</span>
-              {places} places
-            </div>
-            <div className="bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl text-center border border-slate-100 dark:border-slate-800">
-              <span className="block text-base mb-0.5">⚙️</span>
-              {boite}
-            </div>
-            <div className="bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded-xl text-center border border-slate-100 dark:border-slate-800">
-              <span className="block text-base mb-0.5">⛽</span>
-              {energie}
-            </div>
-          </div>
+          {/* Caractéristiques */}
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+            {specs.map(({ icon: Icon, label }) => (
+              <li key={label} className="flex items-center gap-1">
+                <Icon size={16} className="text-slate-400 dark:text-slate-500" />
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {/* Pied de carte : Prix & Action */}
-        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-          <div>
-            <span className="text-2xl font-black text-slate-900 dark:text-white">
+        {/* Prix et action */}
+        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-end justify-between">
+          <p>
+            <span className="text-2xl font-bold text-slate-900 dark:text-white">
               {typeof prix === 'number' ? prix.toLocaleString('fr-FR') : prix}
             </span>
-            <span className="text-xs font-medium text-slate-500 dark:text-slate-400"> FCFA/j</span>
-          </div>
+            <span className="text-sm text-slate-500 dark:text-slate-400"> FCFA / jour</span>
+          </p>
 
-          <Link
-            to={`/vehicle/detail/${id}`}
-            className="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl 
-            transition duration-200 shadow-sm hover:shadow-md cursor-pointer"
-          >
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 dark:text-blue-400">
             Détails
-          </Link>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

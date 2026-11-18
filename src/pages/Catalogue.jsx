@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import VehicleCard from '../components/VehicleCard';
+import SectionHeader from '../components/SectionHeader';
 import { VEHICULES_DATA, FILTER_OPTIONS } from '../data/vehicleData';
 
 function Catalogue() {
@@ -10,6 +11,7 @@ function Catalogue() {
   const energieActive = searchParams.get('energie') || "Toutes";
   const boiteActive = searchParams.get('boite') || "Toutes";
   const marqueActive = searchParams.get('marque') || "Toutes";
+  const tri = searchParams.get('tri') || "pertinence";
 
   const listVehicules = VEHICULES_DATA || [];
 
@@ -43,28 +45,36 @@ function Catalogue() {
     return matchCat && matchEnergie && matchBoite && matchMarque;
   });
 
+  // Tri par prix (ne modifie pas la liste d'origine)
+  if (tri === "prix-asc") vehiculesFiltres.sort((a, b) => a.prix - b.prix);
+  if (tri === "prix-desc") vehiculesFiltres.sort((a, b) => b.prix - a.prix);
+
+  const updateTri = (value) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (value === "pertinence") newParams.delete('tri');
+    else newParams.set('tri', value);
+    setSearchParams(newParams);
+  };
+
   const hasActiveFilters = catActive !== "Toutes" || energieActive !== "Toutes" || boiteActive !== "Toutes" || marqueActive !== "Toutes";
 
   return (
-    <div className="space-y-10 py-8 px-4 sm:px-6 max-w-7xl mx-auto dark:text-white">
-      
+    <div className="space-y-8 py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+
       {/* En-tête */}
-      <section className="text-center space-y-3">
-        <h2 className="text-3xl font-extrabold text-slate-800 dark:text-white sm:text-4xl">
-          Notre Catalogue de Véhicules
-        </h2>
-        <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
-        <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-          Explorez notre flotte de {listVehicules.length} véhicules récents et trouvez celui qui convient à votre voyage.
-        </p>
-      </section>
+      <SectionHeader
+        as="h1"
+        eyebrow="Catalogue"
+        title="Trouvez le véhicule idéal"
+        subtitle={`Explorez notre flotte de ${listVehicules.length} véhicules récents et trouvez celui qui convient à votre voyage.`}
+      />
 
       {/* Barre de Filtres Multi-critères */}
-      <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Filtre 1 : Catégorie */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Catégorie
           </label>
           <select
@@ -80,7 +90,7 @@ function Catalogue() {
 
         {/* Filtre 2 : Énergie */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Énergie
           </label>
           <select
@@ -96,7 +106,7 @@ function Catalogue() {
 
         {/* Filtre 3 : Boîte de vitesse */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Boîte de vitesse
           </label>
           <select
@@ -112,7 +122,7 @@ function Catalogue() {
 
         {/* Filtre 4 : Marque */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Marque
           </label>
           <select
@@ -129,22 +139,39 @@ function Catalogue() {
       </div>
 
       {/* Résultat et Réinitialisation */}
-      <div className="flex justify-between items-center text-sm font-medium text-slate-500 dark:text-slate-400">
-        <span>{vehiculesFiltres.length} véhicule(s) trouvé(s)</span>
-        {hasActiveFilters && (
-          <button
-            onClick={resetFilters}
-            className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+      <div className="flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center text-sm text-slate-600 dark:text-slate-400">
+        <div className="flex items-center gap-4">
+          <span className="font-medium">
+            {vehiculesFiltres.length} véhicule{vehiculesFiltres.length > 1 ? 's' : ''} trouvé{vehiculesFiltres.length > 1 ? 's' : ''}
+          </span>
+          {hasActiveFilters && (
+            <button
+              onClick={resetFilters}
+              className="font-medium text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+            >
+              Réinitialiser les filtres
+            </button>
+          )}
+        </div>
+
+        <label className="flex items-center gap-2">
+          <span>Trier par</span>
+          <select
+            value={tri}
+            onChange={(e) => updateTri(e.target.value)}
+            className="border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none cursor-pointer"
           >
-            Réinitialiser tous les filtres
-          </button>
-        )}
+            <option value="pertinence">Pertinence</option>
+            <option value="prix-asc">Prix croissant</option>
+            <option value="prix-desc">Prix décroissant</option>
+          </select>
+        </label>
       </div>
 
       {/* Grille des Véhicules */}
       <section>
         {vehiculesFiltres.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {vehiculesFiltres.map((vehicule, index) => (
               <div key={vehicule.id} className="h-full">
                 <VehicleCard 
@@ -163,7 +190,7 @@ function Catalogue() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 space-y-3 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div className="text-center py-16 space-y-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
             <p className="text-slate-600 dark:text-slate-400 text-lg">
               Aucun véhicule ne correspond à ces critères de recherche.
             </p>

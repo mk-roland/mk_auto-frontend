@@ -1,10 +1,8 @@
 // src/contexts/ThemeContext.jsx
 
-import { createContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { ThemeContext } from './themeContextValue';
 
-export const ThemeContext = createContext();
-
-// On ajoute 'default' ici :
 export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
