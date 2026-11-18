@@ -9,7 +9,7 @@ function Temoignage({ temoim }) {
 
   return (
     <figure
-      data-reveal
+      data-item
       className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col justify-between gap-6 h-full"
     >
       <div className="space-y-4">
@@ -18,6 +18,8 @@ function Temoignage({ temoim }) {
             <Star
               key={i}
               size={16}
+              data-draw
+              {...(i < note ? { 'data-fill': true } : {})}
               className={i < note ? 'fill-amber-400 text-amber-400' : 'text-slate-300 dark:text-slate-700'}
             />
           ))}
@@ -28,7 +30,7 @@ function Temoignage({ temoim }) {
       </div>
 
       <figcaption className="flex items-center gap-3">
-        <span className="w-10 h-10 shrink-0 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold flex items-center justify-center">
+        <span data-icon-box className="w-10 h-10 shrink-0 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 text-sm font-semibold flex items-center justify-center">
           {initiales(temoim.nom)}
         </span>
         <div>

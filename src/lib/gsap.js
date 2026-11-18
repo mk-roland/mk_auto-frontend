@@ -4,9 +4,10 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
+import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin, SplitText);
 
 // Réglages par défaut de toutes les animations.
 gsap.defaults({ ease: 'power3.out', duration: 0.8 });
@@ -17,4 +18,4 @@ gsap.defaults({ ease: 'power3.out', duration: 0.8 });
 export const MOTION = '(prefers-reduced-motion: no-preference)';
 export const REDUCE = '(prefers-reduced-motion: reduce)';
 
-export { gsap, ScrollTrigger, DrawSVGPlugin, useGSAP };
+export { gsap, ScrollTrigger, DrawSVGPlugin, SplitText, useGSAP };

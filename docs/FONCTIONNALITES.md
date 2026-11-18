@@ -40,8 +40,10 @@ src/
 ├── lib/gsap.js                ← configuration centrale de GSAP
 ├── hooks/                     ← logique réutilisable
 │   ├── useReveal.js           ← apparition au scroll (attribut data-reveal)
+│   ├── useSequence.js         ← cartes une par une + icônes dessinées (data-sequence)
 │   └── useErreurs.js          ← validation des formulaires en français
 ├── components/
+│   ├── home/Hero.jsx          ← hero de l'accueil avec motion design
 │   ├── ui/Field.jsx           ← champ de formulaire (libellé + message d'erreur)
 │   ├── contact/               ← formulaire de réservation, infos agence, coche de succès
 │   ├── SectionHeader.jsx      ← en-tête commun (sur-titre, titre, sous-titre)
@@ -104,6 +106,39 @@ return <div ref={scope}><div data-reveal>…</div></div>;
 - **Hero** : accroche, deux boutons (« Voir nos véhicules », « Réservation rapide »)
   et un badge **« À partir de … FCFA / jour »** calculé automatiquement depuis
   le prix le plus bas de la flotte.
+
+### Motion design du hero — `components/home/Hero.jsx`
+Une timeline GSAP d'environ 3 secondes au chargement :
+1. les deux halos lumineux s'allument ;
+2. le badge « Location premium à Abidjan » tombe en place, l'étincelle tourne ;
+3. le titre monte **mot par mot** derrière un masque (SplitText) ;
+4. un **trait jaune se dessine** sous « sérénité » (DrawSVG) ;
+5. le texte puis les boutons arrivent ;
+6. le cadre photo **s'ouvre de gauche à droite** et la voiture entre en glissant ;
+7. le badge de prix rebondit et le **compteur défile** de 0 au prix minimum.
+
+Ensuite, en continu et discrètement : la voiture flotte, les halos dérivent,
+les **marquages de route** jaunes défilent en bas du hero, le visuel s'incline
+légèrement en suivant la souris (ordinateur) et se décale au scroll (parallaxe).
+
+### Cartes une par une — `hooks/useSequence.js`
+Sections « Pourquoi choisir MK Auto » et « Témoignages » : quand la rangée entre
+à l'écran, **la carte 1 apparaît, son icône se dessine trait par trait, puis la
+carte 2**, etc. Les étoiles des témoignages se tracent une à une puis se remplissent.
+
+```jsx
+<div data-sequence>                 {/* la rangée */}
+  <div data-item>                   {/* chaque carte */}
+    <div data-icon-box>             {/* support d'icône qui rebondit */}
+      <Car data-draw />             {/* icône dessinée */}
+    </div>
+    <Star data-draw data-fill />    {/* dessinée puis remplie */}
+  </div>
+</div>
+```
+
+Comme le reste des animations, rien de tout cela ne se joue si l'utilisateur a
+demandé à réduire les animations : le contenu est affiché directement.
 - **Pourquoi choisir MK Auto** : 3 engagements (`data/engagementData.js`).
 - **Témoignages** : étoiles, avatar avec initiales (`data/temoignages.js`).
   Pour changer la note d'un témoignage, ajouter `note: 4` à l'entrée (5 par défaut).
@@ -223,7 +258,7 @@ pendant le développement**. Elles ne sont pas présentes dans le site publié
 
 ## 9. Poids ajouté par GSAP
 
-GSAP (avec ScrollTrigger et DrawSVG) fait passer le JavaScript du site
+GSAP (avec ScrollTrigger, DrawSVG et SplitText) fait passer le JavaScript du site
 d'environ **87 Ko à 137 Ko** une fois compressé (gzip). Seuls les plugins
 réellement utilisés sont importés dans `lib/gsap.js` : pour en ajouter un,
 l'importer et l'enregistrer dans ce fichier uniquement.
