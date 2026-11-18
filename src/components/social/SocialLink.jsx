@@ -16,11 +16,11 @@ export default function SocialLinks() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={social.name}
-          className={`group opacity-80 hover:opacity-100 ${social.translateY} transform transition-all duration-300 ease-in-out`}
+          className={`group p-2.5 -m-2.5 ${social.translateY} transform transition-all duration-300 ease-in-out`}
         >
           {/* L'élément prend la couleur du parent grâce au masque CSS */}
           <span
-            className="block w-6 h-6 bg-white group-hover:bg-blue-400 transition-colors duration-300"
+            className="block w-6 h-6 bg-asphalt-300 group-hover:bg-signal-500 transition-colors duration-300"
             style={{
               maskImage: `url(${social.icon})`,
               WebkitMaskImage: `url(${social.icon})`,

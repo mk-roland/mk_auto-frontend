@@ -131,7 +131,7 @@ export default function ReservationForm() {
       data-reveal
       noValidate
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800"
+      className="space-y-4 bg-white dark:bg-asphalt-900 p-6 sm:p-8 rounded-sm border-2 border-asphalt-950 dark:border-asphalt-700"
     >
       {/* Champ piège anti-spam : invisible pour les humains */}
       <input type="text" name="_gotcha" value={formData._gotcha} onChange={handleChange}
@@ -173,13 +173,13 @@ export default function ReservationForm() {
 
       {/* Récapitulatif : durée et prix estimé */}
       {jours > 0 && (
-        <div className="flex items-center justify-between rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-4 py-3 text-sm" aria-live="polite">
-          <span className="text-slate-600 dark:text-slate-300">
-            Durée : <strong className="text-slate-900 dark:text-white">{jours} jour{jours > 1 ? 's' : ''}</strong>
+        <div className="flex items-center justify-between rounded-sm bg-asphalt-50 dark:bg-asphalt-800/60 border border-asphalt-200 dark:border-asphalt-700 px-4 py-3 text-sm" aria-live="polite">
+          <span className="text-asphalt-600 dark:text-asphalt-300">
+            Durée : <strong className="text-asphalt-900 dark:text-white">{jours} jour{jours > 1 ? 's' : ''}</strong>
           </span>
           {estimation > 0 && (
-            <span className="text-slate-600 dark:text-slate-300">
-              Estimation : <strong className="text-slate-900 dark:text-white">{estimation.toLocaleString('fr-FR')} FCFA</strong>
+            <span className="text-asphalt-600 dark:text-asphalt-300">
+              Estimation : <strong className="text-asphalt-900 dark:text-white">{estimation.toLocaleString('fr-FR')} FCFA</strong>
             </span>
           )}
         </div>
@@ -188,20 +188,20 @@ export default function ReservationForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition-colors shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-wait"
+        className="btn-signal w-full !py-4"
       >
         {isSubmitting ? 'Envoi en cours…' : 'Envoyer ma demande de disponibilité'}
       </button>
 
       {/* Retour après envoi */}
       {status === 'success' && (
-        <p role="status" className="flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+        <p role="status" className="flex items-start gap-3 rounded-sm border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
           <SuccessCheck play={successCount} />
           Votre demande a bien été envoyée. Nous vous recontactons rapidement pour confirmer la disponibilité.
         </p>
       )}
       {status === 'error' && (
-        <p role="alert" className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
+        <p role="alert" className="flex items-start gap-3 rounded-sm border border-red-200 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
           <AlertCircle size={20} className="shrink-0" />
           Impossible d'envoyer la demande pour le moment. Réessayez ou contactez-nous par téléphone ou WhatsApp.
         </p>

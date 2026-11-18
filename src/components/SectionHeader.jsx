@@ -1,17 +1,18 @@
-// En-tête de section commun à toutes les pages : sur-titre, titre, sous-titre.
-export default function SectionHeader({ eyebrow, title, subtitle, as: Tag = 'h2' }) {
+// En-tête de section : aligné à gauche, titre en capitales condensées façon panneau.
+// Sur grand écran, le sous-titre se place à droite du titre.
+export default function SectionHeader({ eyebrow, title, subtitle, as: Tag = 'h2', light = false }) {
   return (
-    <div className="text-center max-w-2xl mx-auto space-y-4">
-      {eyebrow && (
-        <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-          {eyebrow}
-        </p>
-      )}
-      <Tag className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight text-slate-900 dark:text-white">
-        {title}
-      </Tag>
+    <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+      <div className="space-y-3">
+        {eyebrow && (
+          <p className={`kicker ${light ? 'text-asphalt-300' : 'text-asphalt-600 dark:text-asphalt-300'}`}>{eyebrow}</p>
+        )}
+        <Tag className={`font-sign text-5xl sm:text-6xl font-extrabold text-balance ${light ? 'text-white' : 'text-asphalt-950 dark:text-white'}`}>
+          {title}
+        </Tag>
+      </div>
       {subtitle && (
-        <p className="text-base leading-relaxed text-slate-600 dark:text-slate-400">
+        <p className={`max-w-prose text-lg leading-relaxed ${light ? 'text-asphalt-300' : 'text-asphalt-600 dark:text-asphalt-300'}`}>
           {subtitle}
         </p>
       )}

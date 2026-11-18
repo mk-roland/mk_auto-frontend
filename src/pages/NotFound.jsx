@@ -16,16 +16,16 @@ export default function NotFound() {
 
   return (
     <section ref={scope} className="section-min-height flex flex-col items-center justify-center gap-6 px-4 text-center">
-      <Car data-car className="text-blue-600 dark:text-blue-400" size={64} aria-hidden="true" />
-      <h1 data-nf className="text-6xl font-extrabold text-slate-900 dark:text-white">404</h1>
-      <p data-nf className="text-slate-600 dark:text-slate-400 max-w-md">
+      <div data-car className="w-20 h-20 rotate-45 bg-signal-500 border-[3px] border-asphalt-950 rounded-sm grid place-items-center" aria-hidden="true"><Car className="-rotate-45 text-asphalt-950" size={34} /></div>
+      <h1 data-nf className="font-sign text-[9rem] font-extrabold text-asphalt-950 dark:text-white">404</h1>
+      <p data-nf className="text-asphalt-600 dark:text-asphalt-400 max-w-md">
         Cette route ne mène nulle part : la page demandée n'existe pas ou a été déplacée.
       </p>
       <div data-nf className="flex flex-col sm:flex-row gap-3">
-        <Link to="/" className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 transition-colors">
+        <Link to="/" className="btn-signal">
           <ArrowLeft size={18} /> Retour à l'accueil
         </Link>
-        <Link to="/catalogue" className="inline-flex items-center justify-center rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-3 font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+        <Link to="/catalogue" className="btn-outline text-asphalt-950 dark:text-white hover:bg-asphalt-950 hover:text-white dark:hover:bg-white dark:hover:text-asphalt-950">
           Voir les véhicules
         </Link>
       </div>

@@ -64,6 +64,34 @@ les informations qui changent.
 
 ---
 
+## Identité visuelle « Route & signalisation »
+
+Le site a sa propre identité, pour ne plus ressembler à un modèle générique :
+
+| Élément | Choix | Où |
+|---|---|---|
+| Couleurs | **Asphalte** (`asphalt-50` → `asphalt-950`) + **jaune signalisation** (`signal-500` = `#ffc400`) | `src/index.css` (`@theme`) |
+| Polices | **Barlow Condensed** (titres, en capitales) et **Barlow** (texte) : famille inspirée des panneaux routiers | `index.html` |
+| Logo | Une **plaque d'immatriculation** « MK • AUTO » avec bande jaune « CI » | `components/Logo.jsx`, `public/favicon.svg` |
+| Prix | Affichés sur une plaque (`plate`, `plate-band`, `plate-text`) | `index.css` |
+| Boutons | `btn-signal` (jaune) et `btn-outline` (contour) | `index.css` |
+| Décor | Tirets de marquage au sol (`road-dashes`), losanges de signalisation, repère carré jaune (`kicker`) | `index.css` |
+| Formes | Coins droits (`rounded-sm`), bordures franches, pas d'ombres ni de halos flous | partout |
+
+Règle de contraste : le jaune sert de **fond** (texte asphalte dessus) ou de
+**texte sur fond sombre**, jamais de texte jaune sur fond clair.
+
+### Page d'accueil
+1. **Hero** plein écran : « LOUEZ. ROULEZ. RENDEZ. », photo de la BMW Série 5
+   coupée en biais, plaque cliquable vers sa fiche, chiffres calculés depuis la flotte.
+2. **La flotte** (`components/home/Flotte.jsx`) : tableau des tarifs par catégorie
+   (nombre de véhicules, exemples, prix minimum), chaque ligne ouvre le catalogue filtré.
+3. **Les règles de la maison** : les 3 engagements en panneaux losanges.
+4. **Ils ont roulé avec nous** : témoignages sur bande asphalte.
+5. **Bande jaune** d'appel à l'action : WhatsApp et téléphone.
+
+---
+
 ## 2. Fonctionnalités communes à toutes les pages
 
 ### Barre de navigation — `components/Navbar.jsx`

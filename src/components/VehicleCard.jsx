@@ -24,12 +24,12 @@ export default function VehicleCard({
     <Link
       to={`/vehicle/detail/${id}`}
       data-reveal
-      className="group h-full flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800
-      shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-[box-shadow,translate] duration-300
-      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      className="group h-full flex flex-col bg-white dark:bg-asphalt-900 border-2 border-asphalt-200 dark:border-asphalt-800 rounded-sm overflow-hidden
+      hover:border-asphalt-950 dark:hover:border-signal-500 transition-colors duration-200
+      focus-visible:outline-3 focus-visible:outline-signal-500 focus-visible:outline-offset-2"
     >
       {/* Image */}
-      <div className="relative aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+      <div className="relative aspect-[16/10] w-full bg-asphalt-100 dark:bg-asphalt-800 overflow-hidden">
         <img
           src={image}
           alt={`${marque} ${nom}`}
@@ -39,44 +39,44 @@ export default function VehicleCard({
             e.currentTarget.src = FALLBACK_IMAGE;
           }}
         />
-        <span className="absolute top-3 left-3 bg-white/90 dark:bg-slate-900/80 text-slate-800 dark:text-slate-100 text-xs font-semibold px-3 py-1 rounded-full backdrop-blur-md">
+        <span className="absolute top-0 left-0 bg-signal-500 text-asphalt-950 font-display text-sm font-bold uppercase tracking-wide px-3 py-1">
           {categorie}
         </span>
       </div>
 
       {/* Contenu */}
-      <div className="p-6 flex-1 flex flex-col gap-6">
+      <div className="p-5 flex-1 flex flex-col gap-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.15em] text-asphalt-500 dark:text-asphalt-400">
             {marque}
           </p>
-          <h3 className="mt-1 text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="mt-1 font-sign text-3xl font-bold text-asphalt-950 dark:text-white">
             {nom}
           </h3>
 
-          {/* Caractéristiques */}
-          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-asphalt-600 dark:text-asphalt-300">
             {specs.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-1">
-                <Icon size={16} className="text-slate-400 dark:text-slate-500" />
+              <li key={label} className="flex items-center gap-1.5">
+                <Icon size={16} className="text-asphalt-400" />
                 {label}
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Prix et action */}
-        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-end justify-between">
-          <p>
-            <span className="text-2xl font-bold text-slate-900 dark:text-white">
+        {/* Prix (plaque) et action */}
+        <div className="mt-auto flex items-center justify-between gap-3">
+          <span className="plate text-xl">
+            <span className="plate-band" aria-hidden="true">CI</span>
+            <span className="plate-text tabular-nums">
               {typeof prix === 'number' ? prix.toLocaleString('fr-FR') : prix}
+              <span className="text-sm text-asphalt-500">F/jour</span>
             </span>
-            <span className="text-sm text-slate-500 dark:text-slate-400"> FCFA / jour</span>
-          </p>
+          </span>
 
-          <span className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 dark:text-blue-400">
-            Détails
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          <span className="inline-flex items-center gap-1 font-display text-lg font-bold uppercase text-asphalt-950 dark:text-white">
+            Voir
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </span>
         </div>
       </div>

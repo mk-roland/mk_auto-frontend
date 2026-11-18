@@ -1,5 +1,5 @@
 export const appNav = [
   { name: 'Accueil', path: '/' },
-  { name: 'Nos Véhicules', path: '/catalogue' },
-  { name: 'Contact & Réservation', path: '/contact' },
+  { name: 'La flotte', path: '/catalogue' },
+  { name: 'Contact', path: '/contact' },
 ];

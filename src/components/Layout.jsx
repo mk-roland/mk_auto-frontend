@@ -24,7 +24,7 @@ export default function Layout() {
   }, { dependencies: [pathname] });
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen flex flex-col justify-between bg-asphalt-50 text-asphalt-950 dark:bg-asphalt-950 dark:text-asphalt-100 font-sans">
       <Navbar />
 
       <main ref={mainRef} className="flex-1 w-full">

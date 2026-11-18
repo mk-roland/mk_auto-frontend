@@ -1,57 +1,88 @@
 import { useRef } from 'react';
+import { Phone } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
 import { useSequence } from '../hooks/useSequence';
-import Hero from '../components/home/Hero';
 import { temoignagesData } from '../data/temoignages';
 import { engagementsData } from '../data/engagementData';
-import { VEHICULES_DATA } from '../data/vehicleData';
+import { CONTACT, whatsappUrl } from '../config/contact';
+import Hero from '../components/home/Hero';
+import Flotte from '../components/home/Flotte';
 import Temoignage from '../components/TemoignageCard';
 import EngagementCard from '../components/EngagementCard';
 import SectionHeader from '../components/SectionHeader';
-
-// Prix le plus bas de la flotte, pour l'accroche du hero
-const prixMin = Math.min(...VEHICULES_DATA.map((v) => v.prix).filter((p) => typeof p === 'number'));
+import WhatsappIcon from '../components/social/meta.jsx';
 
 function Home() {
   const scope = useRef(null);
   useReveal(scope);    // en-têtes de section
-  useSequence(scope);  // cartes une par une + icônes dessinées
+  useSequence(scope);  // lignes et cartes une par une + icônes dessinées
 
   return (
-    <div ref={scope} className="space-y-24 pb-24">
+    <div ref={scope}>
 
       {/* 1. HERO (motion design : components/home/Hero.jsx) */}
-      <Hero prixMin={prixMin} />
+      <Hero />
 
-      {/* 2. ENGAGEMENTS */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-        <div data-reveal>
-        <SectionHeader
-          eyebrow="Nos engagements"
-          title="Pourquoi choisir MK Auto ?"
-          subtitle="Nous mettons tout en œuvre pour vous offrir une expérience de conduite fluide, transparente et sans mauvaise surprise."
-        />
-        </div>
-        <div data-sequence className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {engagementsData.map((engagement) => (
-            <EngagementCard key={engagement.id} {...engagement} />
-          ))}
+      {/* 2. LA FLOTTE : tarifs par catégorie */}
+      <div className="py-20 sm:py-28">
+        <Flotte />
+      </div>
+
+      {/* 3. ENGAGEMENTS : panneaux en losange */}
+      <section className="bg-white dark:bg-asphalt-900 border-y border-asphalt-200 dark:border-asphalt-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28 space-y-14">
+          <div data-reveal>
+            <SectionHeader
+              eyebrow="Nos engagements"
+              title="Les règles de la maison"
+              subtitle="Ce que vous pouvez attendre de nous, à chaque location."
+            />
+          </div>
+          <div data-sequence className="grid grid-cols-1 sm:grid-cols-3 gap-12 sm:gap-0">
+            {engagementsData.map((engagement) => (
+              <EngagementCard key={engagement.id} {...engagement} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* 3. TÉMOIGNAGES */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-        <div data-reveal>
-        <SectionHeader
-          eyebrow="Témoignages"
-          title="Ce que disent nos conducteurs"
-          subtitle="Vacances, déplacements professionnels ou trajets quotidiens : ils nous font confiance."
-        />
+      {/* 4. TÉMOIGNAGES : bande asphalte */}
+      <section className="bg-asphalt-950 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28 space-y-14">
+          <div data-reveal>
+            <SectionHeader
+              light
+              eyebrow="Témoignages"
+              title="Ils ont roulé avec nous"
+              subtitle="Vacances, déplacements professionnels ou trajets quotidiens."
+            />
+          </div>
+          <div data-sequence className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {temoignagesData.map((t) => (
+              <Temoignage key={t.id} temoim={t} />
+            ))}
+          </div>
         </div>
-        <div data-sequence className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {temoignagesData.map((t) => (
-            <Temoignage key={t.id} temoim={t} />
-          ))}
+      </section>
+
+      {/* 5. APPEL À L'ACTION : bande jaune signalisation */}
+      <section className="bg-signal-500 text-asphalt-950">
+        <div data-reveal className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div className="space-y-3">
+            <h2 className="font-sign text-5xl sm:text-6xl font-extrabold text-balance">Besoin d'une voiture demain matin ?</h2>
+            <p className="text-lg max-w-xl">
+              Écrivez-nous sur WhatsApp ou appelez l'agence : on vous confirme la disponibilité et on prépare le véhicule.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href={whatsappUrl('Bonjour MK Auto, je voudrais louer un véhicule.')} target="_blank" rel="noopener noreferrer"
+              className="btn-outline bg-asphalt-950 border-asphalt-950 text-white hover:bg-asphalt-800">
+              <WhatsappIcon className="w-5 h-5" /> WhatsApp
+            </a>
+            <a href={`tel:${CONTACT.telephoneLien}`} className="btn-outline text-asphalt-950 hover:bg-asphalt-950 hover:text-signal-500">
+              <Phone size={20} /> {CONTACT.telephone}
+            </a>
+          </div>
         </div>
       </section>
 
