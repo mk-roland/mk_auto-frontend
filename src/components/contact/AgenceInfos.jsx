@@ -6,7 +6,7 @@ import { CONTACT } from '../../config/contact';
 export default function AgenceInfos() {
   return (
     <div data-reveal className="space-y-6">
-      <div className="bg-white dark:bg-nuit-900 p-6 sm:p-8 rounded-sm space-y-6 border border-nuit-200 dark:border-nuit-800">
+      <div className="bg-white dark:bg-nuit-900 p-6 sm:p-8 rounded-2xl space-y-6 border border-nuit-200 dark:border-nuit-800">
         <div>
           <h2 className="font-sign text-3xl font-bold text-nuit-950 mb-2 dark:text-white flex items-center gap-2">
             <MapPin size={20} className="text-nuit-950 dark:text-soleil-400" /> Agence MK Auto
@@ -48,7 +48,7 @@ export default function AgenceInfos() {
       </div>
 
       {/* Carte Google Maps */}
-      <div className="rounded-sm overflow-hidden border border-nuit-200 dark:border-nuit-800 h-64">
+      <div className="rounded-2xl overflow-hidden border border-nuit-200 dark:border-nuit-800 h-64">
         <iframe
           title="Carte : agence MK Auto à Abidjan"
           src="https://www.google.com/maps?q=Abidjan,+C%C3%B4te+d%27Ivoire&output=embed"

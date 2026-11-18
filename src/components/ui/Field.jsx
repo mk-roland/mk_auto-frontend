@@ -1,7 +1,7 @@
 // Champ de formulaire : libellé relié au champ (htmlFor) + message d'erreur accessible.
 // Inspiré de Zenab Glass.
 export const inputClass =
-  'w-full rounded-sm border border-nuit-300 dark:border-nuit-700 bg-white dark:bg-nuit-800 text-nuit-900 dark:text-white p-3 ' +
+  'w-full rounded-xl border border-nuit-300 dark:border-nuit-700 bg-white dark:bg-nuit-800 text-nuit-900 dark:text-white p-3 ' +
   'outline-none transition focus:ring-2 focus:ring-soleil-500 placeholder:text-nuit-400 ' +
   'aria-invalid:border-red-500 aria-invalid:ring-red-500/30';
 

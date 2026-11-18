@@ -9,7 +9,7 @@ function Temoignage({ temoim }) {
   const note = temoim.note ?? 5;
 
   return (
-    <figure data-item className="border-t border-nuit-800 pt-6 flex flex-col justify-between gap-8 h-full">
+    <figure data-item className="bg-nuit-900 border border-nuit-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between gap-8 h-full">
       <div className="space-y-4">
         <div className="flex gap-1" role="img" aria-label={`Note : ${note} sur 5`}>
           {Array.from({ length: 5 }, (_, i) => (
@@ -29,7 +29,7 @@ function Temoignage({ temoim }) {
       </div>
 
       <figcaption className="flex items-center gap-3">
-        <span data-icon-box className="w-11 h-11 shrink-0 rounded-sm bg-soleil-500 text-white font-display text-lg font-bold grid place-items-center">
+        <span data-icon-box className="w-11 h-11 shrink-0 rounded-full bg-soleil-500 text-white font-display text-lg font-bold grid place-items-center">
           {initiales(temoim.nom)}
         </span>
         <div>

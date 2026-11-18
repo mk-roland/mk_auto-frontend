@@ -91,8 +91,8 @@
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.25rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
   transition: background-color 0.2s, translate 0.2s;
   cursor: pointer;
   &:hover { background-color: var(--color-soleil-600); }
@@ -112,8 +112,8 @@
   font-size: 1.125rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: calc(0.75rem - 2px) 1.5rem;
-  border-radius: 0.25rem;
+  padding: calc(0.75rem - 2px) 1.6rem;
+  border-radius: 9999px;
   transition: background-color 0.2s, color 0.2s;
   cursor: pointer;
   &:focus-visible { outline: 3px solid var(--color-soleil-500); outline-offset: 3px; }
@@ -126,7 +126,7 @@
   background: #ffffff;
   color: var(--color-nuit-950);
   border: 2px solid var(--color-nuit-950);
-  border-radius: 0.3rem;
+  border-radius: 0.5rem;
   font-family: var(--font-display);
   font-weight: 700;
   text-transform: uppercase;
@@ -173,6 +173,7 @@
     width: 0.6rem;
     height: 0.6rem;
     background: var(--color-soleil-500);
+    border-radius: 9999px;
     flex-shrink: 0;
   }
 }

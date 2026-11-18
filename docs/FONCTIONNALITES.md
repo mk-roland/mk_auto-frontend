@@ -79,7 +79,8 @@ mais discrets.
 | Prix | Affichés sur une plaque (`plate`, `plate-band`, `plate-text`) | `index.css` |
 | Boutons | `btn-primary` (orange, texte blanc) et `btn-outline` (contour) | `index.css` |
 | Décor discret | Marquages au sol blancs translucides (`road-dashes`), losanges à contour orange, repère carré orange (`kicker`) | `index.css` |
-| Formes | Coins droits (`rounded-sm`), bordures fines, pas d'ombres ni de halos flous | partout |
+| Arrondis | Par rôle : **boutons et étiquettes en pilule** (`rounded-full`), **cartes et panneaux 16 px** (`rounded-2xl`), **champs, encadrés et icônes 12 px** (`rounded-xl`), bande d'appel 24 px (`rounded-3xl`), plaques 8 px | partout |
+| Profondeur | Bordures fines, pas d'ombres portées ni de halos flous | partout |
 
 Règles de contraste (WCAG) :
 - bouton orange : texte **blanc en gras, 19 px minimum** ;

@@ -48,7 +48,7 @@ function VehiculeDetail() {
           
           <Link
             to="/catalogue"
-            className="inline-flex items-center justify-center gap-2 rounded-sm bg-nuit-100 px-5 py-2.5 text-sm font-semibold text-nuit-700 transition hover:bg-nuit-200 dark:bg-nuit-800 dark:text-nuit-200 dark:hover:bg-nuit-700 self-start lg:self-auto"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-nuit-100 px-5 py-2.5 text-sm font-semibold text-nuit-700 transition hover:bg-nuit-200 dark:bg-nuit-800 dark:text-nuit-200 dark:hover:bg-nuit-700 self-start lg:self-auto"
           >
             <ArrowLeft size={16} />
             Retour au catalogue
@@ -59,7 +59,7 @@ function VehiculeDetail() {
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           
           {/* Visualisation : Image principale */}
-          <div className="overflow-hidden rounded-sm bg-nuit-100 dark:bg-nuit-800 border border-nuit-200 dark:border-nuit-800 relative group h-80 sm:h-96 lg:h-full min-h-80">
+          <div className="overflow-hidden rounded-2xl bg-nuit-100 dark:bg-nuit-800 border border-nuit-200 dark:border-nuit-800 relative group h-80 sm:h-96 lg:h-full min-h-80">
             <img
               src={vehicle.image}
               alt={vehicle.nom}
@@ -68,13 +68,13 @@ function VehiculeDetail() {
                 e.currentTarget.src = "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=800&q=80";
               }}
             />
-            <span className="absolute top-0 left-0 bg-nuit-950/85 text-white font-display text-sm font-bold uppercase tracking-wide backdrop-blur-sm px-3 py-1">
+            <span className="absolute top-4 left-4 bg-nuit-950/80 text-white font-display text-sm font-bold uppercase tracking-wide backdrop-blur-sm px-3 py-1 rounded-full">
               {vehicle.categorie}
             </span>
           </div>
 
           {/* Informations & Inclusions */}
-          <div className="flex flex-col justify-between space-y-6 rounded-sm border border-nuit-200 bg-nuit-50 p-6 sm:p-8 dark:bg-nuit-800/50 dark:border-nuit-800">
+          <div className="flex flex-col justify-between space-y-6 rounded-2xl border border-nuit-200 bg-nuit-50 p-6 sm:p-8 dark:bg-nuit-800/50 dark:border-nuit-800">
             
             <div className="space-y-6">
               {/* Tarification */}
@@ -85,26 +85,26 @@ function VehiculeDetail() {
                   </span>
                   <span className="text-sm font-semibold text-nuit-500 dark:text-nuit-400"> FCFA / jour</span>
                 </div>
-                <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-sm border border-emerald-200 dark:border-emerald-800">
+                <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
                   Disponible immédiatement
                 </span>
               </div>
 
               {/* Badges Fiche Technique */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="flex flex-col items-center p-3 rounded-sm bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
+                <div className="flex flex-col items-center p-3 rounded-xl bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
                   <Users className="text-nuit-950 dark:text-soleil-400 mb-1" size={20} />
                   <span className="text-xs text-nuit-500 dark:text-nuit-400">Capacité</span>
                   <span className="text-xs font-bold text-nuit-800 dark:text-white mt-0.5">{vehicle.places} Places</span>
                 </div>
 
-                <div className="flex flex-col items-center p-3 rounded-sm bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
+                <div className="flex flex-col items-center p-3 rounded-xl bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
                   <Gauge className="text-nuit-950 dark:text-soleil-400 mb-1" size={20} />
                   <span className="text-xs text-nuit-500 dark:text-nuit-400">Boîte</span>
                   <span className="text-xs font-bold text-nuit-800 dark:text-white mt-0.5">{vehicle.boite}</span>
                 </div>
 
-                <div className="flex flex-col items-center p-3 rounded-sm bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
+                <div className="flex flex-col items-center p-3 rounded-xl bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 text-center">
                   <Fuel className="text-nuit-950 dark:text-soleil-400 mb-1" size={20} />
                   <span className="text-xs text-nuit-500 dark:text-nuit-400">Énergie</span>
                   <span className="text-xs font-bold text-nuit-800 dark:text-white mt-0.5">{vehicle.energie}</span>
@@ -123,7 +123,7 @@ function VehiculeDetail() {
 
               {/* Inclusions / Avantages de la réservation */}
               <div className="grid gap-3 sm:grid-cols-2 pt-2">
-                <div className="rounded-sm border border-nuit-200 bg-white p-3 text-xs text-nuit-600 dark:bg-nuit-900 dark:border-nuit-800 dark:text-nuit-300 flex items-start gap-3">
+                <div className="rounded-xl border border-nuit-200 bg-white p-3 text-xs text-nuit-600 dark:bg-nuit-900 dark:border-nuit-800 dark:text-nuit-300 flex items-start gap-3">
                   <ShieldCheck className="text-emerald-500 shrink-0 mt-0.5" size={20} />
                   <div>
                     <h4 className="font-bold text-nuit-900 dark:text-white">Assurance Incluse</h4>
@@ -131,7 +131,7 @@ function VehiculeDetail() {
                   </div>
                 </div>
 
-                <div className="rounded-sm border border-nuit-200 bg-white p-3 text-xs text-nuit-600 dark:bg-nuit-900 dark:border-nuit-800 dark:text-nuit-300 flex items-start gap-3">
+                <div className="rounded-xl border border-nuit-200 bg-white p-3 text-xs text-nuit-600 dark:bg-nuit-900 dark:border-nuit-800 dark:text-nuit-300 flex items-start gap-3">
                   <MapPin className="text-nuit-950 dark:text-soleil-400 shrink-0 mt-0.5" size={20} />
                   <div>
                     <h4 className="font-bold text-nuit-900 dark:text-white">Livraison Flexible</h4>
@@ -147,7 +147,7 @@ function VehiculeDetail() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-3 rounded-sm bg-emerald-600 px-6 py-4 text-base font-bold text-white transition duration-200 hover:bg-emerald-700 cursor-pointer"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-emerald-600 px-6 py-4 text-base font-bold text-white transition duration-200 hover:bg-emerald-700 cursor-pointer"
             >
               <WhatsappIcon className="w-6 h-6 text-white" />
               Réserver via WhatsApp
@@ -156,7 +156,7 @@ function VehiculeDetail() {
             {/* Alternative sans WhatsApp : formulaire avec ce véhicule déjà choisi */}
             <Link
               to={`/contact?vehicule=${vehicle.id}`}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-sm border border-nuit-300 dark:border-nuit-700 px-6 py-3 text-sm font-semibold text-nuit-700 dark:text-nuit-200 transition hover:bg-white dark:hover:bg-nuit-800"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-nuit-300 dark:border-nuit-700 px-6 py-3 text-sm font-semibold text-nuit-700 dark:text-nuit-200 transition hover:bg-white dark:hover:bg-nuit-800"
             >
               <Mail size={18} />
               Demander par formulaire

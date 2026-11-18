@@ -75,7 +75,7 @@ function Catalogue() {
       />
 
       {/* Barre de Filtres Multi-critères */}
-      <div className="bg-nuit-900 p-5 sm:p-6 rounded-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="bg-nuit-900 p-5 sm:p-6 rounded-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Filtre 1 : Catégorie */}
         <div>
@@ -86,7 +86,7 @@ function Catalogue() {
             value={catActive}
             id="filtre-categorie"
             onChange={(e) => updateFilter('categorie', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-xl p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.categories.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
@@ -103,7 +103,7 @@ function Catalogue() {
             value={energieActive}
             id="filtre-energie"
             onChange={(e) => updateFilter('energie', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-xl p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.energies.map((eng) => (
               <option key={eng} value={eng}>{eng}</option>
@@ -120,7 +120,7 @@ function Catalogue() {
             value={boiteActive}
             id="filtre-boite"
             onChange={(e) => updateFilter('boite', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-xl p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.boites.map((b) => (
               <option key={b} value={b}>{b}</option>
@@ -137,7 +137,7 @@ function Catalogue() {
             value={marqueActive}
             id="filtre-marque"
             onChange={(e) => updateFilter('marque', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-xl p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.marques.map((m) => (
               <option key={m} value={m}>{m}</option>
@@ -168,7 +168,7 @@ function Catalogue() {
           <select
             value={tri}
             onChange={(e) => updateTri(e.target.value)}
-            className="border border-nuit-300 dark:border-nuit-700 rounded-sm px-3 py-2 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none cursor-pointer"
+            className="border border-nuit-300 dark:border-nuit-700 rounded-full px-4 py-2 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none cursor-pointer"
           >
             <option value="pertinence">Pertinence</option>
             <option value="prix-asc">Prix croissant</option>
@@ -198,7 +198,7 @@ function Catalogue() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 space-y-4 bg-white dark:bg-nuit-900 rounded-sm border-2 border-dashed border-nuit-300 dark:border-nuit-700">
+          <div className="text-center py-16 space-y-4 bg-white dark:bg-nuit-900 rounded-2xl border-2 border-dashed border-nuit-300 dark:border-nuit-700">
             <p className="text-nuit-600 dark:text-nuit-400 text-lg">
               Aucun véhicule ne correspond à ces critères de recherche.
             </p>

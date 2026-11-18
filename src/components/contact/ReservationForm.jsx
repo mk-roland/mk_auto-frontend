@@ -131,7 +131,7 @@ export default function ReservationForm() {
       data-reveal
       noValidate
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white dark:bg-nuit-900 p-6 sm:p-8 rounded-sm border border-nuit-200 dark:border-nuit-800"
+      className="space-y-4 bg-white dark:bg-nuit-900 p-6 sm:p-8 rounded-2xl border border-nuit-200 dark:border-nuit-800"
     >
       {/* Champ piège anti-spam : invisible pour les humains */}
       <input type="text" name="_gotcha" value={formData._gotcha} onChange={handleChange}
@@ -173,7 +173,7 @@ export default function ReservationForm() {
 
       {/* Récapitulatif : durée et prix estimé */}
       {jours > 0 && (
-        <div className="flex items-center justify-between rounded-sm bg-nuit-50 dark:bg-nuit-800/60 border border-nuit-200 dark:border-nuit-700 px-4 py-3 text-sm" aria-live="polite">
+        <div className="flex items-center justify-between rounded-xl bg-nuit-50 dark:bg-nuit-800/60 border border-nuit-200 dark:border-nuit-700 px-4 py-3 text-sm" aria-live="polite">
           <span className="text-nuit-600 dark:text-nuit-300">
             Durée : <strong className="text-nuit-900 dark:text-white">{jours} jour{jours > 1 ? 's' : ''}</strong>
           </span>
@@ -195,13 +195,13 @@ export default function ReservationForm() {
 
       {/* Retour après envoi */}
       {status === 'success' && (
-        <p role="status" className="flex items-start gap-3 rounded-sm border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
+        <p role="status" className="flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-300">
           <SuccessCheck play={successCount} />
           Votre demande a bien été envoyée. Nous vous recontactons rapidement pour confirmer la disponibilité.
         </p>
       )}
       {status === 'error' && (
-        <p role="alert" className="flex items-start gap-3 rounded-sm border border-red-200 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
+        <p role="alert" className="flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
           <AlertCircle size={20} className="shrink-0" />
           Impossible d'envoyer la demande pour le moment. Réessayez ou contactez-nous par téléphone ou WhatsApp.
         </p>

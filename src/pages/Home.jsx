@@ -57,7 +57,7 @@ function Home() {
               subtitle="Vacances, déplacements professionnels ou trajets quotidiens."
             />
           </div>
-          <div data-sequence className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div data-sequence className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {temoignagesData.map((t) => (
               <Temoignage key={t.id} temoim={t} />
             ))}
@@ -66,8 +66,8 @@ function Home() {
       </section>
 
       {/* 5. APPEL À L'ACTION : bande orange */}
-      <section className="bg-soleil-500 text-white">
-        <div data-reveal className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-24">
+        <div data-reveal className="bg-soleil-500 text-white rounded-3xl px-6 py-12 sm:px-12 sm:py-16 grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div className="space-y-3">
             <h2 className="font-sign text-5xl sm:text-6xl font-extrabold text-balance">Besoin d'une voiture demain matin ?</h2>
             <p className="text-lg font-medium max-w-xl text-nuit-950">

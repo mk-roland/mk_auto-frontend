@@ -14,8 +14,8 @@ const desktopLinkClass = ({ isActive }) =>
   }`;
 
 const mobileLinkClass = ({ isActive }) =>
-  `block w-full px-4 py-3 font-display text-2xl font-semibold uppercase border-l-4 transition-colors ${
-    isActive ? 'border-soleil-400 text-soleil-400' : 'border-transparent text-nuit-100 hover:text-white'
+  `block w-full px-4 py-3 font-display text-2xl font-semibold uppercase rounded-xl transition-colors ${
+    isActive ? 'bg-nuit-800 text-soleil-400' : 'text-nuit-100 hover:bg-nuit-900 hover:text-white'
   }`;
 
 export default function Navbar() {
@@ -51,14 +51,14 @@ export default function Navbar() {
           </Link>
           <button
             onClick={handleThemeSwitch}
-            className="p-2 rounded-sm text-nuit-200 hover:text-white hover:bg-nuit-800 transition-colors cursor-pointer"
+            className="p-2 rounded-full text-nuit-200 hover:text-white hover:bg-nuit-800 transition-colors cursor-pointer"
             aria-label={theme === 'dark' ? 'Passer au thème clair' : 'Passer au thème sombre'}
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <button
             onClick={toggleMenu}
-            className="p-2 md:hidden rounded-sm text-nuit-100 hover:bg-nuit-800 cursor-pointer"
+            className="p-2 md:hidden rounded-full text-nuit-100 hover:bg-nuit-800 cursor-pointer"
             aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
             aria-expanded={isMenuOpen}
           >

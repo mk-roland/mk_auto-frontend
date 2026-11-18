@@ -24,8 +24,8 @@ export default function VehicleCard({
     <Link
       to={`/vehicle/detail/${id}`}
       data-reveal
-      className="group h-full flex flex-col bg-white dark:bg-nuit-900 border-2 border-nuit-200 dark:border-nuit-800 rounded-sm overflow-hidden
-      hover:border-soleil-500 transition-colors duration-200
+      className="group h-full flex flex-col bg-white dark:bg-nuit-900 border border-nuit-200 dark:border-nuit-800 rounded-2xl overflow-hidden hover:-translate-y-1 transition-[translate,border-color]
+      hover:border-soleil-500 duration-200
       focus-visible:outline-3 focus-visible:outline-soleil-500 focus-visible:outline-offset-2"
     >
       {/* Image */}
@@ -39,7 +39,7 @@ export default function VehicleCard({
             e.currentTarget.src = FALLBACK_IMAGE;
           }}
         />
-        <span className="absolute top-0 left-0 bg-nuit-950/85 text-white font-display text-sm font-bold uppercase tracking-wide backdrop-blur-sm px-3 py-1">
+        <span className="absolute top-3 left-3 bg-nuit-950/80 text-white font-display text-sm font-bold uppercase tracking-wide backdrop-blur-sm px-3 py-1 rounded-full">
           {categorie}
         </span>
       </div>

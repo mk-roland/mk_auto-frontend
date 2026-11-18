@@ -39,15 +39,15 @@ export default function Flotte() {
         />
       </div>
 
-      <ul data-sequence className="border-b border-nuit-200 dark:border-nuit-800">
+      <ul data-sequence className="bg-white dark:bg-nuit-900 rounded-2xl border border-nuit-200 dark:border-nuit-800 overflow-hidden divide-y divide-nuit-200 dark:divide-nuit-800">
         {CATEGORIES.map(({ nom, nombre, prixMin, exemples, Icone }) => (
-          <li key={nom} data-item className="border-t border-nuit-200 dark:border-nuit-800">
+          <li key={nom} data-item>
             <Link
               to={`/catalogue?categorie=${encodeURIComponent(nom)}`}
               className="group grid grid-cols-[auto_minmax(0,1fr)_auto] sm:grid-cols-[auto_minmax(0,1.3fr)_minmax(0,1fr)_auto] items-center gap-4 sm:gap-8 py-5 sm:py-6
-                hover:bg-white dark:hover:bg-nuit-900 transition-colors px-2 sm:px-4 focus-visible:outline-3 focus-visible:outline-soleil-500"
+                hover:bg-nuit-50 dark:hover:bg-nuit-800/60 transition-colors px-4 sm:px-6 focus-visible:outline-3 focus-visible:-outline-offset-4 focus-visible:outline-soleil-500"
             >
-              <span data-icon-box className="w-12 h-12 grid place-items-center bg-soleil-500/10 text-soleil-700 dark:text-soleil-400 rounded-sm">
+              <span data-icon-box className="w-12 h-12 grid place-items-center bg-soleil-500/10 text-soleil-700 dark:text-soleil-400 rounded-xl">
                 <Icone size={26} strokeWidth={2} data-draw />
               </span>
 

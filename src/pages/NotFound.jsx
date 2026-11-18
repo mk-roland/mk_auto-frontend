@@ -16,7 +16,7 @@ export default function NotFound() {
 
   return (
     <section ref={scope} className="section-min-height flex flex-col items-center justify-center gap-6 px-4 text-center">
-      <div data-car className="w-20 h-20 rotate-45 bg-soleil-500/10 border-2 border-soleil-500 rounded-sm grid place-items-center" aria-hidden="true"><Car className="-rotate-45 text-soleil-700 dark:text-soleil-400" size={34} /></div>
+      <div data-car className="w-20 h-20 rotate-45 bg-soleil-500/10 border-2 border-soleil-500 rounded-xl grid place-items-center" aria-hidden="true"><Car className="-rotate-45 text-soleil-700 dark:text-soleil-400" size={34} /></div>
       <h1 data-nf className="font-sign text-[9rem] font-extrabold text-nuit-950 dark:text-white">404</h1>
       <p data-nf className="text-nuit-600 dark:text-nuit-400 max-w-md">
         Cette route ne mène nulle part : la page demandée n'existe pas ou a été déplacée.
