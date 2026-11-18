@@ -5,14 +5,14 @@ export default function SectionHeader({ eyebrow, title, subtitle, as: Tag = 'h2'
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
       <div className="space-y-3">
         {eyebrow && (
-          <p className={`kicker ${light ? 'text-asphalt-300' : 'text-asphalt-600 dark:text-asphalt-300'}`}>{eyebrow}</p>
+          <p className={`kicker ${light ? 'text-nuit-300' : 'text-nuit-600 dark:text-nuit-300'}`}>{eyebrow}</p>
         )}
-        <Tag className={`font-sign text-5xl sm:text-6xl font-extrabold text-balance ${light ? 'text-white' : 'text-asphalt-950 dark:text-white'}`}>
+        <Tag className={`font-sign text-5xl sm:text-6xl font-extrabold text-balance ${light ? 'text-white' : 'text-nuit-950 dark:text-white'}`}>
           {title}
         </Tag>
       </div>
       {subtitle && (
-        <p className={`max-w-prose text-lg leading-relaxed ${light ? 'text-asphalt-300' : 'text-asphalt-600 dark:text-asphalt-300'}`}>
+        <p className={`max-w-prose text-lg leading-relaxed ${light ? 'text-nuit-300' : 'text-nuit-600 dark:text-nuit-300'}`}>
           {subtitle}
         </p>
       )}

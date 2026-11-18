@@ -75,18 +75,18 @@ function Catalogue() {
       />
 
       {/* Barre de Filtres Multi-critères */}
-      <div className="bg-asphalt-950 p-5 sm:p-6 rounded-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="bg-nuit-900 p-5 sm:p-6 rounded-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Filtre 1 : Catégorie */}
         <div>
-          <label htmlFor="filtre-categorie" className="block font-display text-sm font-bold text-signal-500 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-categorie" className="block font-display text-sm font-bold text-soleil-400 uppercase tracking-wider mb-2">
             Catégorie
           </label>
           <select
             value={catActive}
             id="filtre-categorie"
             onChange={(e) => updateFilter('categorie', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-asphalt-800 text-asphalt-800 dark:text-white focus:ring-2 focus:ring-signal-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.categories.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
@@ -96,14 +96,14 @@ function Catalogue() {
 
         {/* Filtre 2 : Énergie */}
         <div>
-          <label htmlFor="filtre-energie" className="block font-display text-sm font-bold text-signal-500 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-energie" className="block font-display text-sm font-bold text-soleil-400 uppercase tracking-wider mb-2">
             Énergie
           </label>
           <select
             value={energieActive}
             id="filtre-energie"
             onChange={(e) => updateFilter('energie', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-asphalt-800 text-asphalt-800 dark:text-white focus:ring-2 focus:ring-signal-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.energies.map((eng) => (
               <option key={eng} value={eng}>{eng}</option>
@@ -113,14 +113,14 @@ function Catalogue() {
 
         {/* Filtre 3 : Boîte de vitesse */}
         <div>
-          <label htmlFor="filtre-boite" className="block font-display text-sm font-bold text-signal-500 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-boite" className="block font-display text-sm font-bold text-soleil-400 uppercase tracking-wider mb-2">
             Boîte de vitesse
           </label>
           <select
             value={boiteActive}
             id="filtre-boite"
             onChange={(e) => updateFilter('boite', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-asphalt-800 text-asphalt-800 dark:text-white focus:ring-2 focus:ring-signal-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.boites.map((b) => (
               <option key={b} value={b}>{b}</option>
@@ -130,14 +130,14 @@ function Catalogue() {
 
         {/* Filtre 4 : Marque */}
         <div>
-          <label htmlFor="filtre-marque" className="block font-display text-sm font-bold text-signal-500 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-marque" className="block font-display text-sm font-bold text-soleil-400 uppercase tracking-wider mb-2">
             Marque
           </label>
           <select
             value={marqueActive}
             id="filtre-marque"
             onChange={(e) => updateFilter('marque', e.target.value)}
-            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-asphalt-800 text-asphalt-800 dark:text-white focus:ring-2 focus:ring-signal-500 outline-none transition cursor-pointer text-sm"
+            className="w-full border-0 rounded-sm p-3 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none transition cursor-pointer text-sm"
           >
             {FILTER_OPTIONS.marques.map((m) => (
               <option key={m} value={m}>{m}</option>
@@ -148,7 +148,7 @@ function Catalogue() {
       </div>
 
       {/* Résultat et Réinitialisation */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center text-sm text-asphalt-600 dark:text-asphalt-400">
+      <div className="flex flex-col sm:flex-row gap-4 sm:justify-between sm:items-center text-sm text-nuit-600 dark:text-nuit-400">
         <div className="flex items-center gap-4">
           <span className="font-medium">
             {vehiculesFiltres.length} véhicule{vehiculesFiltres.length > 1 ? 's' : ''} trouvé{vehiculesFiltres.length > 1 ? 's' : ''}
@@ -156,7 +156,7 @@ function Catalogue() {
           {hasActiveFilters && (
             <button
               onClick={resetFilters}
-              className="font-semibold text-asphalt-950 dark:text-white underline decoration-signal-500 decoration-2 underline-offset-4 cursor-pointer"
+              className="font-semibold text-nuit-950 dark:text-white underline decoration-soleil-500 decoration-2 underline-offset-4 cursor-pointer"
             >
               Réinitialiser les filtres
             </button>
@@ -168,7 +168,7 @@ function Catalogue() {
           <select
             value={tri}
             onChange={(e) => updateTri(e.target.value)}
-            className="border border-asphalt-300 dark:border-asphalt-700 rounded-sm px-3 py-2 bg-white dark:bg-asphalt-800 text-asphalt-800 dark:text-white focus:ring-2 focus:ring-signal-500 outline-none cursor-pointer"
+            className="border border-nuit-300 dark:border-nuit-700 rounded-sm px-3 py-2 bg-white dark:bg-nuit-800 text-nuit-800 dark:text-white focus:ring-2 focus:ring-soleil-500 outline-none cursor-pointer"
           >
             <option value="pertinence">Pertinence</option>
             <option value="prix-asc">Prix croissant</option>
@@ -198,13 +198,13 @@ function Catalogue() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 space-y-4 bg-white dark:bg-asphalt-900 rounded-sm border-2 border-dashed border-asphalt-300 dark:border-asphalt-700">
-            <p className="text-asphalt-600 dark:text-asphalt-400 text-lg">
+          <div className="text-center py-16 space-y-4 bg-white dark:bg-nuit-900 rounded-sm border-2 border-dashed border-nuit-300 dark:border-nuit-700">
+            <p className="text-nuit-600 dark:text-nuit-400 text-lg">
               Aucun véhicule ne correspond à ces critères de recherche.
             </p>
             <button
               onClick={resetFilters}
-              className="btn-signal"
+              className="btn-primary"
             >
               Afficher tous les véhicules
             </button>

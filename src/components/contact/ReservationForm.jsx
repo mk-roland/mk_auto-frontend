@@ -131,7 +131,7 @@ export default function ReservationForm() {
       data-reveal
       noValidate
       onSubmit={handleSubmit}
-      className="space-y-4 bg-white dark:bg-asphalt-900 p-6 sm:p-8 rounded-sm border-2 border-asphalt-950 dark:border-asphalt-700"
+      className="space-y-4 bg-white dark:bg-nuit-900 p-6 sm:p-8 rounded-sm border border-nuit-200 dark:border-nuit-800"
     >
       {/* Champ piège anti-spam : invisible pour les humains */}
       <input type="text" name="_gotcha" value={formData._gotcha} onChange={handleChange}
@@ -173,13 +173,13 @@ export default function ReservationForm() {
 
       {/* Récapitulatif : durée et prix estimé */}
       {jours > 0 && (
-        <div className="flex items-center justify-between rounded-sm bg-asphalt-50 dark:bg-asphalt-800/60 border border-asphalt-200 dark:border-asphalt-700 px-4 py-3 text-sm" aria-live="polite">
-          <span className="text-asphalt-600 dark:text-asphalt-300">
-            Durée : <strong className="text-asphalt-900 dark:text-white">{jours} jour{jours > 1 ? 's' : ''}</strong>
+        <div className="flex items-center justify-between rounded-sm bg-nuit-50 dark:bg-nuit-800/60 border border-nuit-200 dark:border-nuit-700 px-4 py-3 text-sm" aria-live="polite">
+          <span className="text-nuit-600 dark:text-nuit-300">
+            Durée : <strong className="text-nuit-900 dark:text-white">{jours} jour{jours > 1 ? 's' : ''}</strong>
           </span>
           {estimation > 0 && (
-            <span className="text-asphalt-600 dark:text-asphalt-300">
-              Estimation : <strong className="text-asphalt-900 dark:text-white">{estimation.toLocaleString('fr-FR')} FCFA</strong>
+            <span className="text-nuit-600 dark:text-nuit-300">
+              Estimation : <strong className="text-nuit-900 dark:text-white">{estimation.toLocaleString('fr-FR')} FCFA</strong>
             </span>
           )}
         </div>
@@ -188,7 +188,7 @@ export default function ReservationForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="btn-signal w-full !py-4"
+        className="btn-primary w-full !py-4"
       >
         {isSubmitting ? 'Envoi en cours…' : 'Envoyer ma demande de disponibilité'}
       </button>

@@ -64,22 +64,30 @@ les informations qui changent.
 
 ---
 
-## Identité visuelle « Route & signalisation »
+## Identité visuelle « Bleu nuit & orange »
 
-Le site a sa propre identité, pour ne plus ressembler à un modèle générique :
+Le site a sa propre identité, pour ne plus ressembler à un modèle générique.
+Les couleurs évoquent Abidjan au crépuscule : bleu nuit de la lagune, orange du
+coucher de soleil et du drapeau ivoirien. Les éléments « route » sont gardés,
+mais discrets.
 
 | Élément | Choix | Où |
 |---|---|---|
-| Couleurs | **Asphalte** (`asphalt-50` → `asphalt-950`) + **jaune signalisation** (`signal-500` = `#ffc400`) | `src/index.css` (`@theme`) |
+| Couleurs | **Bleu nuit** (`nuit-50` → `nuit-950`) + **orange** (`soleil-300` → `soleil-700`, principal `soleil-500` = `#e8601c`) | `src/index.css` (`@theme`) |
 | Polices | **Barlow Condensed** (titres, en capitales) et **Barlow** (texte) : famille inspirée des panneaux routiers | `index.html` |
-| Logo | Une **plaque d'immatriculation** « MK • AUTO » avec bande jaune « CI » | `components/Logo.jsx`, `public/favicon.svg` |
+| Logo | Une **plaque d'immatriculation** « MK • AUTO » avec bande orange « CI » | `components/Logo.jsx`, `public/favicon.svg` |
 | Prix | Affichés sur une plaque (`plate`, `plate-band`, `plate-text`) | `index.css` |
-| Boutons | `btn-signal` (jaune) et `btn-outline` (contour) | `index.css` |
-| Décor | Tirets de marquage au sol (`road-dashes`), losanges de signalisation, repère carré jaune (`kicker`) | `index.css` |
-| Formes | Coins droits (`rounded-sm`), bordures franches, pas d'ombres ni de halos flous | partout |
+| Boutons | `btn-primary` (orange, texte blanc) et `btn-outline` (contour) | `index.css` |
+| Décor discret | Marquages au sol blancs translucides (`road-dashes`), losanges à contour orange, repère carré orange (`kicker`) | `index.css` |
+| Formes | Coins droits (`rounded-sm`), bordures fines, pas d'ombres ni de halos flous | partout |
 
-Règle de contraste : le jaune sert de **fond** (texte asphalte dessus) ou de
-**texte sur fond sombre**, jamais de texte jaune sur fond clair.
+Règles de contraste (WCAG) :
+- bouton orange : texte **blanc en gras, 19 px minimum** ;
+- texte orange sur fond clair : **`soleil-700`** uniquement ;
+- texte orange sur fond sombre : **`soleil-400`**.
+
+Pour changer de palette plus tard, il suffit de modifier les valeurs `--color-nuit-*`
+et `--color-soleil-*` dans `index.css` : tout le site suit.
 
 ### Page d'accueil
 1. **Hero** plein écran : « LOUEZ. ROULEZ. RENDEZ. », photo de la BMW Série 5
@@ -87,8 +95,8 @@ Règle de contraste : le jaune sert de **fond** (texte asphalte dessus) ou de
 2. **La flotte** (`components/home/Flotte.jsx`) : tableau des tarifs par catégorie
    (nombre de véhicules, exemples, prix minimum), chaque ligne ouvre le catalogue filtré.
 3. **Les règles de la maison** : les 3 engagements en panneaux losanges.
-4. **Ils ont roulé avec nous** : témoignages sur bande asphalte.
-5. **Bande jaune** d'appel à l'action : WhatsApp et téléphone.
+4. **Ils ont roulé avec nous** : témoignages sur bande bleu nuit.
+5. **Bande orange** d'appel à l'action : WhatsApp et téléphone.
 
 ---
 
@@ -131,26 +139,24 @@ return <div ref={scope}><div data-reveal>…</div></div>;
 
 ## 3. Page d'accueil — `pages/Home.jsx`
 
-- **Hero** : accroche, deux boutons (« Voir nos véhicules », « Réservation rapide »)
-  et un badge **« À partir de … FCFA / jour »** calculé automatiquement depuis
-  le prix le plus bas de la flotte.
+- **Hero** plein écran : « LOUEZ. ROULEZ. RENDEZ. », photo de la BMW Série 5 de la
+  flotte coupée en biais, plaque cliquable vers sa fiche, et trois chiffres calculés
+  depuis les données (nombre de véhicules, de catégories, prix minimum).
 
 ### Motion design du hero — `components/home/Hero.jsx`
 Une timeline GSAP d'environ 3 secondes au chargement :
-1. les deux halos lumineux s'allument ;
-2. le badge « Location premium à Abidjan » tombe en place, l'étincelle tourne ;
-3. le titre monte **mot par mot** derrière un masque (SplitText) ;
-4. un **trait jaune se dessine** sous « sérénité » (DrawSVG) ;
-5. le texte puis les boutons arrivent ;
-6. le cadre photo **s'ouvre de gauche à droite** et la voiture entre en glissant ;
-7. le badge de prix rebondit et le **compteur défile** de 0 au prix minimum.
+1. le sur-titre « Location de voitures · Abidjan » apparaît ;
+2. LOUEZ. ROULEZ. RENDEZ. montent **ligne par ligne** derrière un masque ;
+3. les **points orange tombent** en place ;
+4. le texte puis les boutons arrivent ;
+5. la photo **s'ouvre en biais** depuis la droite et la voiture recule en place ;
+6. la plaque du véhicule glisse, les **compteurs défilent** de 0 à leur valeur.
 
-Ensuite, en continu et discrètement : la voiture flotte, les halos dérivent,
-les **marquages de route** jaunes défilent en bas du hero, le visuel s'incline
-légèrement en suivant la souris (ordinateur) et se décale au scroll (parallaxe).
+Ensuite, en continu et discrètement : les **marquages au sol** défilent sous le hero
+et la photo se décale au scroll (parallaxe).
 
 ### Cartes une par une — `hooks/useSequence.js`
-Sections « Pourquoi choisir MK Auto » et « Témoignages » : quand la rangée entre
+Sections « La flotte », « Les règles de la maison » et « Ils ont roulé avec nous » : quand la rangée entre
 à l'écran, **la carte 1 apparaît, son icône se dessine trait par trait, puis la
 carte 2**, etc. Les étoiles des témoignages se tracent une à une puis se remplissent.
 

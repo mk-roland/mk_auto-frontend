@@ -39,33 +39,33 @@ export default function Flotte() {
         />
       </div>
 
-      <ul data-sequence className="border-b-2 border-asphalt-950 dark:border-asphalt-700">
+      <ul data-sequence className="border-b border-nuit-200 dark:border-nuit-800">
         {CATEGORIES.map(({ nom, nombre, prixMin, exemples, Icone }) => (
-          <li key={nom} data-item className="border-t-2 border-asphalt-950 dark:border-asphalt-700">
+          <li key={nom} data-item className="border-t border-nuit-200 dark:border-nuit-800">
             <Link
               to={`/catalogue?categorie=${encodeURIComponent(nom)}`}
               className="group grid grid-cols-[auto_minmax(0,1fr)_auto] sm:grid-cols-[auto_minmax(0,1.3fr)_minmax(0,1fr)_auto] items-center gap-4 sm:gap-8 py-5 sm:py-6
-                hover:bg-white dark:hover:bg-asphalt-900 transition-colors px-2 sm:px-4 focus-visible:outline-3 focus-visible:outline-signal-500"
+                hover:bg-white dark:hover:bg-nuit-900 transition-colors px-2 sm:px-4 focus-visible:outline-3 focus-visible:outline-soleil-500"
             >
-              <span data-icon-box className="w-12 h-12 grid place-items-center bg-signal-500 text-asphalt-950 rounded-sm">
+              <span data-icon-box className="w-12 h-12 grid place-items-center bg-soleil-500/10 text-soleil-700 dark:text-soleil-400 rounded-sm">
                 <Icone size={26} strokeWidth={2} data-draw />
               </span>
 
               <span className="min-w-0">
-                <span className="block font-sign text-3xl sm:text-4xl font-bold text-asphalt-950 dark:text-white">{nom}</span>
-                <span className="block text-sm text-asphalt-500 dark:text-asphalt-400 truncate">
+                <span className="block font-sign text-3xl sm:text-4xl font-bold text-nuit-950 dark:text-white">{nom}</span>
+                <span className="block text-sm text-nuit-500 dark:text-nuit-400 truncate">
                   {nombre} véhicule{nombre > 1 ? 's' : ''} · {exemples.join(', ')}{nombre > 3 ? '…' : ''}
                 </span>
               </span>
 
               <span className="hidden sm:block text-right">
-                <span className="block text-xs uppercase tracking-wider text-asphalt-500 dark:text-asphalt-400">À partir de</span>
-                <span className="font-display text-3xl font-bold tabular-nums text-asphalt-950 dark:text-white">
+                <span className="block text-xs uppercase tracking-wider text-nuit-500 dark:text-nuit-400">À partir de</span>
+                <span className="font-display text-3xl font-bold tabular-nums text-nuit-950 dark:text-white">
                   {prixMin.toLocaleString('fr-FR')} <span className="text-lg">F</span>
                 </span>
               </span>
 
-              <ArrowRight size={28} className="text-asphalt-950 dark:text-white group-hover:translate-x-2 transition-transform" />
+              <ArrowRight size={28} className="text-nuit-400 group-hover:text-soleil-600 dark:group-hover:text-soleil-400 group-hover:translate-x-2 transition-transform" />
             </Link>
           </li>
         ))}

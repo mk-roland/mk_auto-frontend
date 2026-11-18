@@ -9,9 +9,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-asphalt-950 text-asphalt-300">
+    <footer className="bg-nuit-950 text-nuit-300">
       {/* Marquage au sol */}
-      <div className="road-dashes h-1" aria-hidden="true"></div>
+      <div className="road-dashes h-[3px]" aria-hidden="true"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-4">
@@ -27,7 +27,7 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             {appNav.map((item) => (
               <li key={item.path}>
-                <Link to={item.path} className="hover:text-signal-500 transition-colors">{item.name}</Link>
+                <Link to={item.path} className="hover:text-soleil-400 transition-colors">{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -36,9 +36,9 @@ export default function Footer() {
         <div>
           <h2 className="font-sign text-lg font-bold text-white mb-3">Nous joindre</h2>
           <ul className="space-y-2 text-sm">
-            <li><a href={`tel:${CONTACT.telephoneLien}`} className="hover:text-signal-500 transition-colors">{CONTACT.telephone}</a></li>
-            <li><a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-signal-500 transition-colors">WhatsApp</a></li>
-            <li><a href={`mailto:${CONTACT.email}`} className="hover:text-signal-500 transition-colors">{CONTACT.email}</a></li>
+            <li><a href={`tel:${CONTACT.telephoneLien}`} className="hover:text-soleil-400 transition-colors">{CONTACT.telephone}</a></li>
+            <li><a href={whatsappUrl()} target="_blank" rel="noopener noreferrer" className="hover:text-soleil-400 transition-colors">WhatsApp</a></li>
+            <li><a href={`mailto:${CONTACT.email}`} className="hover:text-soleil-400 transition-colors">{CONTACT.email}</a></li>
           </ul>
         </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-asphalt-800">
+      <div className="border-t border-nuit-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between text-sm">
           <p>&copy; {currentYear} MK Auto. Tous droits réservés.</p>
           <SocialLinks />

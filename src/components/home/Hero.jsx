@@ -2,7 +2,7 @@
 // Hero « Route & signalisation » avec motion design (GSAP) :
 //   1. le sur-titre apparaît ;
 //   2. LOUEZ. ROULEZ. RENDEZ. montent ligne par ligne derrière un masque,
-//      puis les points jaunes "tombent" en place ;
+//      puis les points orange "tombent" en place ;
 //   3. texte et boutons arrivent ;
 //   4. la photo s'ouvre en biais depuis la droite, la voiture recule en place ;
 //   5. la plaque du véhicule glisse, les compteurs défilent (véhicules, catégories, prix) ;
@@ -81,7 +81,7 @@ export default function Hero() {
   }, { scope });
 
   return (
-    <section ref={scope} className="relative bg-asphalt-950 text-white overflow-hidden">
+    <section ref={scope} className="relative bg-nuit-950 text-white overflow-hidden">
       {/* Photo : pleine hauteur à droite sur grand écran, coupée en biais */}
       <div
         data-hero="photo"
@@ -95,18 +95,18 @@ export default function Hero() {
           className="absolute inset-0 w-full h-full object-cover object-[60%_center]"
           fetchpriority="high"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-asphalt-950/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-asphalt-950/40" aria-hidden="true"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-nuit-950/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-nuit-950/40" aria-hidden="true"></div>
 
         {/* Plaque du véhicule vedette, cliquable */}
         <Link
           data-hero="plate"
           to={`/vehicle/detail/${vedette.id}`}
-          className="plate absolute right-4 bottom-6 sm:right-6 text-base sm:text-lg hover:bg-signal-300 focus-visible:outline-3 focus-visible:outline-signal-500"
+          className="plate absolute right-4 bottom-6 sm:right-6 text-base sm:text-lg hover:bg-nuit-50 focus-visible:outline-3 focus-visible:outline-soleil-500"
         >
           <span className="plate-band" aria-hidden="true">CI</span>
           <span className="plate-text">
             {vedette.nom}
-            <span className="text-asphalt-400" aria-hidden="true">·</span>
+            <span className="text-nuit-400" aria-hidden="true">·</span>
             {vedette.prix.toLocaleString('fr-FR')} F/jour
           </span>
         </Link>
@@ -114,39 +114,39 @@ export default function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 lg:pt-20 lg:pb-10">
         <div className="lg:w-[52%] space-y-7">
-          <p data-hero="kicker" className="kicker text-signal-500">Location de voitures · Abidjan</p>
+          <p data-hero="kicker" className="kicker text-soleil-400">Location de voitures · Abidjan</p>
 
           <h1 className="font-sign font-extrabold text-[clamp(4.25rem,11vw,9rem)] leading-[0.86]">
             {LIGNES.map((mot) => (
               <span key={mot} className="block overflow-hidden pb-1">
                 <span data-hero="line" className="block">
-                  {mot}<span data-hero="dot" className="inline-block text-signal-500">.</span>
+                  {mot}<span data-hero="dot" className="inline-block text-soleil-500">.</span>
                 </span>
               </span>
             ))}
           </h1>
 
-          <p data-hero="text" className="max-w-md text-lg leading-relaxed text-asphalt-300">
+          <p data-hero="text" className="max-w-md text-lg leading-relaxed text-nuit-300">
             {VEHICULES_DATA.length} véhicules à la journée, de la {moinsCher.nom} au {plusCher.nom}.
             Assurance incluse, livraison possible à l'aéroport ou à domicile.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link data-hero="cta" to="/catalogue" className="btn-signal group">
+            <Link data-hero="cta" to="/catalogue" className="btn-primary group">
               Voir la flotte <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <a data-hero="cta" href={whatsappUrl('Bonjour MK Auto, je voudrais louer un véhicule.')} target="_blank" rel="noopener noreferrer"
-              className="btn-outline text-white hover:bg-white hover:text-asphalt-950">
+              className="btn-outline text-white hover:bg-white hover:text-nuit-950">
               <WhatsappIcon className="w-5 h-5" /> Écrire sur WhatsApp
             </a>
           </div>
         </div>
 
         {/* Chiffres de la flotte */}
-        <dl className="mt-12 lg:mt-16 lg:w-[46%] grid grid-cols-3 border-t border-asphalt-800">
+        <dl className="mt-12 lg:mt-16 lg:w-[46%] grid grid-cols-3 border-t border-nuit-800">
           {STATS.map((s) => (
             <div key={s.label} data-hero="stat" className="pt-4 pr-4 flex flex-col-reverse">
-              <dt className="text-xs sm:text-sm text-asphalt-400">{s.label}</dt>
+              <dt className="text-xs sm:text-sm text-nuit-400">{s.label}</dt>
               <dd className="font-display text-3xl sm:text-4xl font-bold tabular-nums text-white">
                 <span data-hero="count" data-value={s.value} data-format={s.format ? 'true' : 'false'}>
                   {s.format ? s.value.toLocaleString('fr-FR') : s.value}
@@ -158,7 +158,7 @@ export default function Hero() {
       </div>
 
       {/* Marquage au sol */}
-      <div data-hero="road" className="road-dashes relative h-1.5 lg:-mt-1" aria-hidden="true"></div>
+      <div data-hero="road" className="road-dashes relative h-[3px]" aria-hidden="true"></div>
     </section>
   );
 }

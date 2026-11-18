@@ -20,7 +20,7 @@ export default function SocialLinks() {
         >
           {/* L'élément prend la couleur du parent grâce au masque CSS */}
           <span
-            className="block w-6 h-6 bg-asphalt-300 group-hover:bg-signal-500 transition-colors duration-300"
+            className="block w-6 h-6 bg-nuit-300 group-hover:bg-soleil-400 transition-colors duration-300"
             style={{
               maskImage: `url(${social.icon})`,
               WebkitMaskImage: `url(${social.icon})`,

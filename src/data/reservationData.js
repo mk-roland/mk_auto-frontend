@@ -38,7 +38,7 @@ export const CONTACT_INFOS = [
     prefix: "Téléphone :",
     label: CONTACT.telephone,
     href: `tel:${CONTACT.telephoneLien}`,
-    hoverClass: "hover:text-asphalt-950 dark:hover:text-white"
+    hoverClass: "hover:text-nuit-950 dark:hover:text-white"
   },
   {
     id: "whatsapp",
@@ -55,7 +55,7 @@ export const CONTACT_INFOS = [
     prefix: "E-mail :",
     label: CONTACT.email,
     href: `mailto:${CONTACT.email}`,
-    hoverClass: "hover:text-asphalt-950 dark:hover:text-white"
+    hoverClass: "hover:text-nuit-950 dark:hover:text-white"
   }
 ];
 

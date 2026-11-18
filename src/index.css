@@ -6,29 +6,33 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 @theme {
-  /* Identité « Route & signalisation » :
-     asphalte (gris très légèrement chaud) + jaune des marquages routiers.
-     Le jaune sert de FOND (texte asphalte dessus) ou de texte sur fond sombre,
-     jamais de texte sur fond clair (contraste insuffisant). */
+  /* Identité « Bleu nuit & orange » (Abidjan au crépuscule) :
+     - nuit-*   : bleu nuit, du fond clair (50) au fond le plus sombre (950) ;
+     - soleil-* : orange du coucher de soleil / du drapeau ivoirien.
+     Règles de contraste :
+     - bouton orange (soleil-500) : texte BLANC en gras ≥ 19 px (grand texte, 3:1) ;
+     - texte orange sur fond clair : soleil-700 uniquement ;
+     - texte orange sur fond sombre : soleil-400. */
   --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-sans: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --color-asphalt-50: #f5f5f2;
-  --color-asphalt-100: #ebebe7;
-  --color-asphalt-200: #d9d9d4;
-  --color-asphalt-300: #bdbdb7;
-  --color-asphalt-400: #94948e;
-  --color-asphalt-500: #6f6f6a;
-  --color-asphalt-600: #52524e;
-  --color-asphalt-700: #3a3a37;
-  --color-asphalt-800: #262624;
-  --color-asphalt-900: #1a1a19;
-  --color-asphalt-950: #111110;
+  --color-nuit-50: #f4f6f9;
+  --color-nuit-100: #e8ecf2;
+  --color-nuit-200: #d3dae4;
+  --color-nuit-300: #b0bbcb;
+  --color-nuit-400: #8492a8;
+  --color-nuit-500: #5f6d84;
+  --color-nuit-600: #475369;
+  --color-nuit-700: #313c51;
+  --color-nuit-800: #1d2a3f;
+  --color-nuit-900: #142135;
+  --color-nuit-950: #0c1628;
 
-  --color-signal-300: #ffdc66;
-  --color-signal-400: #ffcf33;
-  --color-signal-500: #ffc400;
-  --color-signal-600: #e0a800;
+  --color-soleil-300: #f9a473;
+  --color-soleil-400: #f27a3a;
+  --color-soleil-500: #e8601c;
+  --color-soleil-600: #c94e12;
+  --color-soleil-700: #a33f0e;
 
   /* 1. Tes écrans personnalisés (Media Queries complexes) */
   --breakpoint-widescreen: (min-aspect-ratio: 3/2);
@@ -64,7 +68,7 @@
   min-height: calc(100vh - 68px);
 }
 
-/* ---------- Identité Route & signalisation ---------- */
+/* ---------- Identité « Bleu nuit & orange », éléments route discrets ---------- */
 
 /* Titres : capitales condensées, comme les panneaux */
 @utility font-sign {
@@ -74,25 +78,25 @@
   line-height: 0.95;
 }
 
-/* Bouton principal : jaune signalisation, texte asphalte */
-@utility btn-signal {
+/* Bouton principal : orange, texte blanc en gras (≥ 19 px pour le contraste) */
+@utility btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--color-signal-500);
-  color: var(--color-asphalt-950);
+  background-color: var(--color-soleil-500);
+  color: #ffffff;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.75rem 1.5rem;
   border-radius: 0.25rem;
   transition: background-color 0.2s, translate 0.2s;
   cursor: pointer;
-  &:hover { background-color: var(--color-signal-400); }
-  &:focus-visible { outline: 3px solid var(--color-signal-500); outline-offset: 3px; }
+  &:hover { background-color: var(--color-soleil-600); }
+  &:focus-visible { outline: 3px solid var(--color-soleil-500); outline-offset: 3px; }
   &:disabled { opacity: 0.6; cursor: wait; }
 }
 
@@ -112,16 +116,16 @@
   border-radius: 0.25rem;
   transition: background-color 0.2s, color 0.2s;
   cursor: pointer;
-  &:focus-visible { outline: 3px solid var(--color-signal-500); outline-offset: 3px; }
+  &:focus-visible { outline: 3px solid var(--color-soleil-500); outline-offset: 3px; }
 }
 
-/* Plaque d'immatriculation : bande jaune « CI » + texte en capitales */
+/* Plaque d'immatriculation : bande orange « CI » + texte en capitales */
 @utility plate {
   display: inline-flex;
   align-items: stretch;
   background: #ffffff;
-  color: var(--color-asphalt-950);
-  border: 2px solid var(--color-asphalt-950);
+  color: var(--color-nuit-950);
+  border: 2px solid var(--color-nuit-950);
   border-radius: 0.3rem;
   font-family: var(--font-display);
   font-weight: 700;
@@ -134,8 +138,8 @@
 @utility plate-band {
   display: flex;
   align-items: center;
-  background: var(--color-signal-500);
-  color: var(--color-asphalt-950);
+  background: var(--color-soleil-500);
+  color: #ffffff;
   font-size: 0.625rem;
   font-weight: 800;
   padding: 0 0.3rem;
@@ -149,12 +153,12 @@
   padding: 0.3em 0.55em;
 }
 
-/* Marquage au sol : tirets jaunes */
+/* Marquage au sol, discret : tirets blancs translucides (sur fond sombre) */
 @utility road-dashes {
-  background-image: repeating-linear-gradient(90deg, var(--color-signal-500) 0 42px, transparent 42px 76px);
+  background-image: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.22) 0 42px, transparent 42px 76px);
 }
 
-/* Petit repère carré jaune devant les sur-titres */
+/* Petit repère carré orange devant les sur-titres */
 @utility kicker {
   display: inline-flex;
   align-items: center;
@@ -168,7 +172,7 @@
     content: "";
     width: 0.6rem;
     height: 0.6rem;
-    background: var(--color-signal-500);
+    background: var(--color-soleil-500);
     flex-shrink: 0;
   }
 }
