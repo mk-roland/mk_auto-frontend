@@ -11,7 +11,7 @@ function Home() {
   useScrollReveal();
 
   return (
-    <div className="space-y-20 py-6 dark:bg-slate-950 dark:text-white">
+    <div className="space-y-20 py-6 dark:text-white">
       
       {/* 1. SECTION HERO */}
       <section className="reveal-init flex flex-col md:flex-row items-center gap-10 bg-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-xl overflow-hidden relative">

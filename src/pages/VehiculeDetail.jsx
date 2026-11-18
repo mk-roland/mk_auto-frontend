@@ -12,9 +12,9 @@ function VehiculeDetail() {
 
   if (!vehicle) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center bg-slate-50 dark:bg-black">
+      <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center bg-slate-50 dark:bg-slate-950">
         <h2 className="text-3xl font-bold text-slate-800 dark:text-white">Véhicule introuvable</h2>
-        <p className="text-slate-600 mt-4 max-w-xl dark:text-gray-300">
+        <p className="text-slate-600 mt-4 max-w-xl dark:text-slate-300">
           Ce véhicule n'est plus disponible ou l'identifiant est incorrect. Consultez notre flotte disponible.
         </p>
         <Link
@@ -35,7 +35,7 @@ function VehiculeDetail() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${messageWhatsApp}`;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-8 sm:py-12 dark:bg-black">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-8 sm:py-12 dark:bg-slate-950">
       <div className="w-full max-w-6xl rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl md:p-8 dark:bg-slate-900 dark:border-slate-800">
         
         {/* En-tête : Navigation & Titre */}

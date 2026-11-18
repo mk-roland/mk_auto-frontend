@@ -46,7 +46,7 @@ function Catalogue() {
   const hasActiveFilters = catActive !== "Toutes" || energieActive !== "Toutes" || boiteActive !== "Toutes" || marqueActive !== "Toutes";
 
   return (
-    <div className="space-y-10 py-8 px-4 sm:px-6 max-w-7xl mx-auto dark:bg-black dark:text-white">
+    <div className="space-y-10 py-8 px-4 sm:px-6 max-w-7xl mx-auto dark:text-white">
       
       {/* En-tête */}
       <section className="text-center space-y-3">
