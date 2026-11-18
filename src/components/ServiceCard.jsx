@@ -1,9 +1,8 @@
 
-function ServiceCard({ service, index = 0 }) {
+function ServiceCard({ service }) {
   return (
     <div
-      className="reveal-item group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between h-full"
-      style={{ transitionDelay: `${(index % 3) * 120}ms` }}
+      className="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between h-full"
     >
       <div className="space-y-4">
         {/* En-tête de carte : Icône + Badge */}

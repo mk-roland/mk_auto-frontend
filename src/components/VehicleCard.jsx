@@ -13,11 +13,7 @@ export default function VehicleCard({
   prix,
   image,
   places,
-  index = 0
 }) {
-  // Délai pour l'animation en cascade
-  const delay = (index % 3) * 120;
-
   const specs = [
     { icon: Users, label: `${places} places` },
     { icon: Cog, label: boite },
@@ -27,10 +23,10 @@ export default function VehicleCard({
   return (
     <Link
       to={`/vehicle/detail/${id}`}
+      data-reveal
       className="group h-full flex flex-col bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800
-      shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300
+      shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-[box-shadow,translate] duration-300
       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-      style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Image */}
       <div className="relative aspect-[16/10] w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">

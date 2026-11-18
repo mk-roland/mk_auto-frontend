@@ -1,14 +1,12 @@
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ShieldCheck, Fuel, Users, Gauge, MapPin } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Fuel, Users, Gauge, MapPin, Mail } from 'lucide-react';
+import { whatsappUrl as creerLienWhatsApp } from '../config/contact.js';
 import { VEHICULES_DATA } from '../data/vehicleData.js';
 import WhatsappIcon from '../components/social/meta.jsx';
 
 function VehiculeDetail() {
   const { id } = useParams();
   const vehicle = VEHICULES_DATA.find((v) => Number(v.id) === Number(id));
-
-  // Numéro WhatsApp de l'agence (Format international sans + ni espaces)
-  const whatsappNumber = "2250101030363";
 
   if (!vehicle) {
     return (
@@ -29,10 +27,9 @@ function VehiculeDetail() {
   }
 
   // Génération du lien WhatsApp personnalisé avec les détails du véhicule
-  const messageWhatsApp = encodeURIComponent(
+  const whatsappUrl = creerLienWhatsApp(
     `Bonjour ! Je souhaite réserver le véhicule "${vehicle.marque} ${vehicle.nom}" (Réf: #${vehicle.id}). Pouvez-vous me confirmer sa disponibilité et les modalités de réservation ?`
   );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${messageWhatsApp}`;
 
   return (
     <div className="px-4 sm:px-6 py-12">
@@ -144,16 +141,27 @@ function VehiculeDetail() {
               </div>
             </div>
 
-            {/* Bouton de réservation WhatsApp */}
+            {/* Boutons de réservation */}
+            <div className="space-y-3">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-600 px-6 py-4 text-base font-bold text-white transition duration-200 hover:bg-emerald-700 shadow-sm cursor-pointer"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-600 px-6 py-4 text-base font-bold text-white transition duration-200 hover:bg-emerald-700 shadow-sm cursor-pointer"
             >
               <WhatsappIcon className="w-6 h-6 text-white" />
               Réserver via WhatsApp
             </a>
+
+            {/* Alternative sans WhatsApp : formulaire avec ce véhicule déjà choisi */}
+            <Link
+              to={`/contact?vehicule=${vehicle.id}`}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 px-6 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition hover:bg-white dark:hover:bg-slate-800"
+            >
+              <Mail size={18} />
+              Demander par formulaire
+            </Link>
+            </div>
 
           </div>
         </div>

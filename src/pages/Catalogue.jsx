@@ -1,10 +1,15 @@
+import { useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useReveal } from '../hooks/useReveal';
 import VehicleCard from '../components/VehicleCard';
 import SectionHeader from '../components/SectionHeader';
 import { VEHICULES_DATA, FILTER_OPTIONS } from '../data/vehicleData';
 
 function Catalogue() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const scope = useRef(null);
+  // Rejoue l'apparition des cartes quand les filtres ou le tri changent
+  useReveal(scope, [searchParams.toString()]);
 
   // 1. Lecture directe des query params (ex: /catalogue?categorie=SUV)
   const catActive = searchParams.get('categorie') || "Toutes";
@@ -59,7 +64,7 @@ function Catalogue() {
   const hasActiveFilters = catActive !== "Toutes" || energieActive !== "Toutes" || boiteActive !== "Toutes" || marqueActive !== "Toutes";
 
   return (
-    <div className="space-y-8 py-12 px-4 sm:px-6 max-w-7xl mx-auto">
+    <div ref={scope} className="space-y-8 py-12 px-4 sm:px-6 max-w-7xl mx-auto">
 
       {/* En-tête */}
       <SectionHeader
@@ -74,11 +79,12 @@ function Catalogue() {
         
         {/* Filtre 1 : Catégorie */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-categorie" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Catégorie
           </label>
           <select
             value={catActive}
+            id="filtre-categorie"
             onChange={(e) => updateFilter('categorie', e.target.value)}
             className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer text-sm"
           >
@@ -90,11 +96,12 @@ function Catalogue() {
 
         {/* Filtre 2 : Énergie */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-energie" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Énergie
           </label>
           <select
             value={energieActive}
+            id="filtre-energie"
             onChange={(e) => updateFilter('energie', e.target.value)}
             className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer text-sm"
           >
@@ -106,11 +113,12 @@ function Catalogue() {
 
         {/* Filtre 3 : Boîte de vitesse */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-boite" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Boîte de vitesse
           </label>
           <select
             value={boiteActive}
+            id="filtre-boite"
             onChange={(e) => updateFilter('boite', e.target.value)}
             className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer text-sm"
           >
@@ -122,11 +130,12 @@ function Catalogue() {
 
         {/* Filtre 4 : Marque */}
         <div>
-          <label className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
+          <label htmlFor="filtre-marque" className="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
             Marque
           </label>
           <select
             value={marqueActive}
+            id="filtre-marque"
             onChange={(e) => updateFilter('marque', e.target.value)}
             className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition cursor-pointer text-sm"
           >
@@ -172,7 +181,7 @@ function Catalogue() {
       <section>
         {vehiculesFiltres.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {vehiculesFiltres.map((vehicule, index) => (
+            {vehiculesFiltres.map((vehicule) => (
               <div key={vehicule.id} className="h-full">
                 <VehicleCard 
                   id={vehicule.id} 
@@ -184,7 +193,6 @@ function Catalogue() {
                   prix={vehicule.prix} 
                   image={vehicule.image} 
                   places={vehicule.places}
-                  index={index} 
                 />
               </div>
             ))}

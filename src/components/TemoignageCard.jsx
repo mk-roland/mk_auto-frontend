@@ -4,13 +4,13 @@ import { Star } from 'lucide-react';
 const initiales = (nom) =>
   nom.split(' ').filter(Boolean).slice(0, 2).map((m) => m[0].toUpperCase()).join('');
 
-function Temoignage({ temoim, index }) {
+function Temoignage({ temoim }) {
   const note = temoim.note ?? 5;
 
   return (
     <figure
-      className="reveal-item bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col justify-between gap-6 h-full"
-      style={{ transitionDelay: `${(index % 3) * 120}ms` }}
+      data-reveal
+      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col justify-between gap-6 h-full"
     >
       <div className="space-y-4">
         <div className="flex gap-1" aria-label={`Note : ${note} sur 5`}>

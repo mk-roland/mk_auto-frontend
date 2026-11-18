@@ -1,6 +1,7 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useReveal } from '../hooks/useReveal';
 import { temoignagesData } from '../data/temoignages';
 import { engagementsData } from '../data/engagementData';
 import { VEHICULES_DATA } from '../data/vehicleData';
@@ -12,14 +13,15 @@ import SectionHeader from '../components/SectionHeader';
 const prixMin = Math.min(...VEHICULES_DATA.map((v) => v.prix).filter((p) => typeof p === 'number'));
 
 function Home() {
-  useScrollReveal();
+  const scope = useRef(null);
+  useReveal(scope);
 
   return (
-    <div className="space-y-24 pb-24">
+    <div ref={scope} className="space-y-24 pb-24">
 
       {/* 1. HERO */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-        <section className="reveal-init relative overflow-hidden rounded-3xl bg-slate-900 text-white px-6 py-12 sm:px-12 md:py-16">
+        <section data-reveal className="relative overflow-hidden rounded-3xl bg-slate-900 text-white px-6 py-12 sm:px-12 md:py-16">
           {/* Halo lumineux */}
           <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -75,12 +77,14 @@ function Home() {
       </div>
 
       {/* 2. ENGAGEMENTS */}
-      <section className="reveal-init max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+        <div data-reveal>
         <SectionHeader
           eyebrow="Nos engagements"
           title="Pourquoi choisir MK Auto ?"
           subtitle="Nous mettons tout en œuvre pour vous offrir une expérience de conduite fluide, transparente et sans mauvaise surprise."
         />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {engagementsData.map((engagement) => (
             <EngagementCard key={engagement.id} {...engagement} />
@@ -89,15 +93,17 @@ function Home() {
       </section>
 
       {/* 3. TÉMOIGNAGES */}
-      <section className="reveal-init max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
+        <div data-reveal>
         <SectionHeader
           eyebrow="Témoignages"
           title="Ce que disent nos conducteurs"
           subtitle="Vacances, déplacements professionnels ou trajets quotidiens : ils nous font confiance."
         />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {temoignagesData.map((t, index) => (
-            <Temoignage key={t.id} temoim={t} index={index} />
+          {temoignagesData.map((t) => (
+            <Temoignage key={t.id} temoim={t} />
           ))}
         </div>
       </section>

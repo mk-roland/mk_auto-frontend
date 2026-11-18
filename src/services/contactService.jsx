@@ -1,13 +1,11 @@
-// src/services/contactService.js
-
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xbdnkajp";
-const WHATSAPP_NUMBER = "2250101030363";
+// src/services/contactService.jsx
+import { CONTACT } from '../config/contact';
 
 /**
- * Envoie le formulaire via Formspree (API)
+ * Envoie la demande de réservation via Formspree.
  */
 export const sendViaFormspree = async (formData) => {
-  const response = await fetch(FORMSPREE_ENDPOINT, {
+  const response = await fetch(CONTACT.formspree, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,24 +19,4 @@ export const sendViaFormspree = async (formData) => {
   }
 
   return response;
-};
-
-/**
- * Envoie le message via mon WhatsApp
- */
-export const sendViaWhatsApp = (formData) => {
-  const message = `Bonjour Chez Christy !\n\n*Nom:* ${formData.nom}\n*Email:* ${formData.email}\n*Objet:* ${formData.objet}\n*Message:* ${formData.message}`;
-  const encodedText = encodeURIComponent(message);
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`, "_blank");
-};
-
-
-
-/**
- * Sauvegarde le message dans le LocalStorage
- */
-export const saveToLocalStorage = (formData) => {
-  const existingMessages = JSON.parse(localStorage.getItem("messages")) || [];
-  const updatedMessages = [...existingMessages, { ...formData, date: new Date().toISOString() }];
-  localStorage.setItem("messages", JSON.stringify(updatedMessages));
 };

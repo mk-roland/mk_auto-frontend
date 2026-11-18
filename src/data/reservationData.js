@@ -1,82 +1,60 @@
 import { Phone, MessageCircle, Mail } from 'lucide-react';
+import { VEHICULES_DATA, FILTER_OPTIONS } from './vehicleData';
+import { CONTACT, whatsappUrl } from '../config/contact';
 
-// Structure dynamique des champs textuels du formulaire
+// Valeur de l'option « laissez-nous vous conseiller »
+export const OPTION_CONSEIL = 'conseil';
+
+// Champs texte du formulaire (les dates et le véhicule sont gérés à part)
 export const FORM_FIELDS = [
-  {
-    id: 1,
-    gridClass: "grid grid-cols-1 md:grid-cols-2 gap-4",
-    inputs: [
-      { name: "nom", label: "Nom", type: "text", placeholder: "Kadjo" },
-      { name: "prenom", label: "Prénom", type: "text", placeholder: "Marc" },
-    ]
-  },
-  {
-    id: 2,
-    gridClass: "grid grid-cols-1 md:grid-cols-2 gap-4",
-    inputs: [
-      { name: "telephone", label: "Téléphone", type: "tel", placeholder: "+225 01 01 03 03 63" },
-      { name: "email", label: "Adresse Email", type: "email", placeholder: "marc.kadjo@gmail.com" },
-    ]
-  },
-  {
-    id: 3,
-    gridClass: "grid grid-cols-1 md:grid-cols-2 gap-4",
-    inputs: [
-      { name: "dateDepart", label: "Date de départ", type: "date" },
-      { name: "dateRetour", label: "Date de retour", type: "date" },
-    ]
-  }
+  { name: "nom", label: "Nom", type: "text", placeholder: "Ex : Kouassi", autoComplete: "family-name" },
+  { name: "prenom", label: "Prénom", type: "text", placeholder: "Ex : Aya", autoComplete: "given-name" },
+  { name: "telephone", label: "Téléphone", type: "tel", placeholder: "Ex : 07 00 00 00 00", autoComplete: "tel" },
+  { name: "email", label: "Adresse e-mail", type: "email", placeholder: "Ex : aya.kouassi@email.com", autoComplete: "email" },
 ];
 
-// Liste des catégories et modèles de véhicules MK Auto
-export const VEHICULES_OPTIONS = [
-  {
-    category: "Citadines",
-    items: [
-      { value: "peugeot-208", label: "Peugeot 208 (Essence) - 25 000 FCFA/jour" },
-      { value: "renault-clio", label: "Renault Clio 5 (Diesel) - 28 000 FCFA/jour" },
-    ]
-  },
-  {
-    category: "SUV",
-    items: [
-      { value: "peugeot-3008", label: "Peugeot 3008 (Diesel) - 45 000 FCFA/jour" },
-      { value: "hyundai-tucson", label: "Hyundai Tucson (Hybride) - 50 000 FCFA/jour" },
-    ]
-  },
-  {
-    category: "Électriques / Prestige",
-    items: [
-      { value: "tesla-model-3", label: "Tesla Model 3 (Électrique) - 75 000 FCFA/jour" },
-    ]
-  }
-];
+// Libellé d'un véhicule dans la liste : « Peugeot 208 · Essence · 25 000 FCFA/jour »
+export const libelleVehicule = (v) =>
+  `${v.nom} · ${v.energie} · ${v.prix.toLocaleString('fr-FR')} FCFA/jour`;
 
-// Contacts pour la colonne 2
+// Liste générée depuis le catalogue : elle reste toujours à jour,
+// regroupée dans le même ordre de catégories que les filtres.
+export const VEHICULES_OPTIONS = FILTER_OPTIONS.categories
+  .filter((cat) => cat !== "Toutes")
+  .map((cat) => ({
+    category: cat,
+    items: VEHICULES_DATA
+      .filter((v) => v.categorie === cat)
+      .sort((a, b) => a.prix - b.prix)
+      .map((v) => ({ value: String(v.id), label: libelleVehicule(v) })),
+  }))
+  .filter((group) => group.items.length > 0);
+
+// Coordonnées affichées sur la page Contact
 export const CONTACT_INFOS = [
   {
     id: "phone",
     icon: Phone,
     prefix: "Téléphone :",
-    label: "+225 01 01 03 03 63",
-    href: "tel:+2250101030363",
+    label: CONTACT.telephone,
+    href: `tel:${CONTACT.telephoneLien}`,
     hoverClass: "hover:text-blue-600"
   },
   {
     id: "whatsapp",
     icon: MessageCircle,
     prefix: "WhatsApp :",
-    label: "+225 01 01 03 03 63",
-    href: "https://wa.me/2250101030363",
+    label: CONTACT.telephone,
+    href: whatsappUrl(),
     target: "_blank",
     hoverClass: "hover:text-emerald-600"
   },
   {
     id: "email",
     icon: Mail,
-    prefix: "Email :",
-    label: "contact@mkauto.ci",
-    href: "mailto:contact@mkauto.ci",
+    prefix: "E-mail :",
+    label: CONTACT.email,
+    href: `mailto:${CONTACT.email}`,
     hoverClass: "hover:text-blue-600"
   }
 ];

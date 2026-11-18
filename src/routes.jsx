@@ -3,6 +3,7 @@ import HomePage from './pages/Home.jsx';
 import CataloguePage from './pages/Catalogue.jsx';
 import VehiculeDetailPage from './pages/VehiculeDetail.jsx';
 import ContactPage from './pages/Contact.jsx';
+import NotFoundPage from './pages/NotFound.jsx';
 
 export const appRoutes = [
   { path: '/', element: <HomePage /> },
@@ -10,6 +11,7 @@ export const appRoutes = [
   { path: '/catalogue/:categorie?/:energie?/:boite?/:marque?', element: <CataloguePage /> },
   { path: '/vehicle/detail/:id', element: <VehiculeDetailPage /> },
   { path: '/contact', element: <ContactPage /> },
+  { path: '*', element: <NotFoundPage /> }, // toute URL inconnue → 404
 ];
 
 
